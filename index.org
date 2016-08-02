@@ -1,1 +1,54 @@
-Testing
+
+reddit ML: https://www.reddit.com/r/MachineLearning/
+
+Google Brain interview (Aug 11):
+https://www.reddit.com/r/MachineLearning/comments/4v58b2/google_brain_will_be_doing_an_ama_in/?ref=share&ref_source=link
+
+PicBreeder: http://picbreeder.com
+
+NEAT: http://nn.cs.utexas.edu/downloads/papers/stanley.ec02.pdf
+
+HyperNEAT: http://eplex.cs.ucf.edu/hyperNEATpage/
+
+Learning algorithms from examples http://arxiv.org/abs/1511.07275 https://arxiv.org/abs/1410.5401
+
+Generating source code from natural language description http://arxiv.org/abs/1510.07211
+
+And, the most closest work to what author probably wants, a way to write a program in forth while leaving some functions as neural blackboxes to be learned from examples: http://arxiv.org/abs/1605.06640
+
+Also there is a whole research program by nothing less than Facebook AI Research that explicitly aims at creating a conversational AI agent that is able to translate user's natural language orders into programs (asking to the user additional questions if necessary): http://arxiv.org/abs/1511.08130 (there is also a summary here http://colinraffel.com/wiki/a_roadmap_towards_machine_intell... )
+
+And deepmind is also working on conversational agents: https://youtu.be/vQXAsdMa_8A?t=1265
+
+https://hackhands.com/modular-code-lazy-evaluation-haskell/
+
+Program Repair by Stepwise Correctness Enhancement
+   - Transplantation (EB & MH)
+   - Read MIT bug fixing
+   - Graph Theory
+   - Control Theory
+
+* To Read
+A mathematicians apology
+
+ - http://ieeexplore.ieee.org/xpl/articleDetails.jsp?arnumber=5358776
+ - Review [[file:~/org/Gecco-2015-notes.org][Gecco]] notes
+
+Tina Yu, higher-order functions. 
+
+Evan Kirshenbaum's "Iteration Over Vectors in Genetic Programming" [http://www.kirshenbaum.net/Evan/Pubs/HPL-2001-327.pdf]. 
+
+Inductive Programming, Inductive Logic Programming, Program Synthesis literature. Resources: http://www.inductive-programming.org/ and http://research.microsoft.com/en-us/um/people/sumitg/ 
+http://research.microsoft.com/en-us/um/people/sumitg/pubs/cav12.pdf 
+http://research.microsoft.com/en-us/um/people/sumitg/pubs/ppdp10-synthesis.pdf
+
+Could this book be a source of benchmark problems? http://www.hackersdelight.org/ Many more papers: http://www.cs.umd.edu/~jfoster/papers/popl10.pdf, http://www.dtic.mil/cgi-bin/GetTRDoc?AD=ADA461070, http://www.sri.com/sites/default/files/uploads/publications/pdf/1426.pdf, http://people.csail.mit.edu/asolar/papers/thesis.pdf
+
+inductive logic programming [eg http://people.csail.mit.edu/asolar/papers/thesis.pdf]. I wonder what are the prospects for using ILP with GP somehow?
+
+https://github.com/noprompt/frak
+
+http://static.googleusercontent.com/external_content/untrusted_dlcp/research.google.com/en//pubs/archive/34939.pdf.
+
+http://www.reddit.com/r/MachineLearning/comments/1rpm4r/is_there_research_that_exploits_the_history_of/
+
