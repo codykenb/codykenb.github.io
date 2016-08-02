@@ -1,4 +1,8 @@
 
+* Reading
+
+http://crest.cs.ucl.ac.uk/autotransplantation/downloads/autotransplantation.pdf
+
 reddit ML: https://www.reddit.com/r/MachineLearning/
 
 Google Brain interview (Aug 11):
@@ -28,7 +32,6 @@ Program Repair by Stepwise Correctness Enhancement
    - Graph Theory
    - Control Theory
 
-* To Read
 A mathematicians apology
 
  - http://ieeexplore.ieee.org/xpl/articleDetails.jsp?arnumber=5358776
