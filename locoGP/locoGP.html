@@ -1,0 +1,2322 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>locoGP: Improving Performance by
+Genetic Programming Java Source Code</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<!-- xhtml,fn-in,pic-align,css-in,html --> 
+<meta name="src" content="locoGP.tex" /> 
+<meta name="date" content="2015-05-21 11:11:00" /> 
+<script type="text/javascript" src="http://zagreb.ydns.eu/textloop.js"></script> 
+<style type="text/css"> 
+<!--  
+ 
+/* start css.sty */  
+.cmmi-10{font-style: italic;}  
+.cmr-17{font-size:170%;}  
+.cmr-12{font-size:120%;}  
+.cmr-8{font-size:80%;}  
+.cmr-9{font-size:90%;}  
+.cmtt-9{font-size:90%;font-family: monospace;}  
+.cmtt-9{font-family: monospace;}  
+.cmsy-9{font-size:90%;}  
+.cmbx-9{font-size:90%; font-weight: bold;}  
+.cmr-12x-x-120{font-size:144%;}  
+.cmtt-10{font-family: monospace;}  
+.cmtt-10{font-family: monospace;}  
+.cmti-10{ font-style: italic;}  
+.cmti-9{font-size:90%; font-style: italic;}  
+.cmmi-12x-x-120{font-size:144%;font-style: italic;}  
+.cmsy-10x-x-144{font-size:144%;}  
+.small-caps{font-variant: small-caps; }  
+p.noindent { text-indent: 0em }  
+td p.noindent { text-indent: 0em; margin-top:0em; }  
+p.nopar { text-indent: 0em; }  
+p.indent{ text-indent: 1.5em }  
+@media print {div.crosslinks {visibility:hidden;}}  
+a img { border-top: 0; border-left: 0; border-right: 0; }  
+center { margin-top:1em; margin-bottom:1em; }  
+td center { margin-top:0em; margin-bottom:0em; }  
+.Canvas { position:relative; }  
+img.math{vertical-align:middle;}  
+li p.indent { text-indent: 0em }  
+li p:first-child{ margin-top:0em; }  
+li p:last-child, li div:last-child { margin-bottom:0.5em; }  
+li p~ul:last-child, li p~ol:last-child{ margin-bottom:0.5em; }  
+.enumerate1 {list-style-type:decimal;}  
+.enumerate2 {list-style-type:lower-alpha;}  
+.enumerate3 {list-style-type:lower-roman;}  
+.enumerate4 {list-style-type:upper-alpha;}  
+div.newtheorem { margin-bottom: 2em; margin-top: 2em;}  
+.obeylines-h,.obeylines-v {white-space: nowrap; }  
+div.obeylines-v p { margin-top:0; margin-bottom:0; }  
+.overline{ text-decoration:overline; }  
+.overline img{ border-top: 1px solid black; }  
+td.displaylines {text-align:center; white-space:nowrap;}  
+.centerline {text-align:center;}  
+.rightline {text-align:right;}  
+div.verbatim {font-family: monospace; white-space: nowrap; text-align:left; clear:both; }  
+.fbox {padding-left:3.0pt; padding-right:3.0pt; text-indent:0pt; border:solid black 0.4pt; }  
+div.fbox {display:table}  
+div.center div.fbox {text-align:center; clear:both; padding-left:3.0pt; padding-right:3.0pt; text-indent:0pt; border:solid black 0.4pt; }  
+div.minipage{width:100%;}  
+div.center, div.center div.center {text-align: center; margin-left:1em; margin-right:1em;}  
+div.center div {text-align: left;}  
+div.flushright, div.flushright div.flushright {text-align: right;}  
+div.flushright div {text-align: left;}  
+div.flushleft {text-align: left;}  
+.underline{ text-decoration:underline; }  
+.underline img{ border-bottom: 1px solid black; margin-bottom:1pt; }  
+.framebox-c, .framebox-l, .framebox-r { padding-left:3.0pt; padding-right:3.0pt; text-indent:0pt; border:solid black 0.4pt; }  
+.framebox-c {text-align:center;}  
+.framebox-l {text-align:left;}  
+.framebox-r {text-align:right;}  
+span.thank-mark{ vertical-align: super }  
+span.footnote-mark sup.textsuperscript, span.footnote-mark a sup.textsuperscript{ font-size:80%; }  
+div.footnotes{border-top:solid 1px black; border-bottom:solid 1px black; padding-bottom:1ex; padding-top:0.5ex; margin-right:15%; margin-top:2ex; font-style:italic; font-size:85%;}  
+div.footnotes p{margin-top:0; margin-bottom:0; text-indent:0;}  
+div.tabular, div.center div.tabular {text-align: center; margin-top:0.5em; margin-bottom:0.5em; }  
+table.tabular td p{margin-top:0em;}  
+table.tabular {margin-left: auto; margin-right: auto;}  
+td p:first-child{ margin-top:0em; }  
+td p:last-child{ margin-bottom:0em; }  
+div.td00{ margin-left:0pt; margin-right:0pt; }  
+div.td01{ margin-left:0pt; margin-right:5pt; }  
+div.td10{ margin-left:5pt; margin-right:0pt; }  
+div.td11{ margin-left:5pt; margin-right:5pt; }  
+table[rules] {border-left:solid black 0.4pt; border-right:solid black 0.4pt; }  
+td.td00{ padding-left:0pt; padding-right:0pt; }  
+td.td01{ padding-left:0pt; padding-right:5pt; }  
+td.td10{ padding-left:5pt; padding-right:0pt; }  
+td.td11{ padding-left:5pt; padding-right:5pt; }  
+table[rules] {border-left:solid black 0.4pt; border-right:solid black 0.4pt; }  
+.hline hr, .cline hr{ height : 1px; margin:0px; }  
+.tabbing-right {text-align:right;}  
+span.TEX {letter-spacing: -0.125em; }  
+span.TEX span.E{ position:relative;top:0.5ex;left:-0.0417em;}  
+a span.TEX span.E {text-decoration: none; }  
+span.LATEX span.A{ position:relative; top:-0.5ex; left:-0.4em; font-size:85%;}  
+span.LATEX span.TEX{ position:relative; left: -0.4em; }  
+div.float, div.figure {margin-left: auto; margin-right: auto;}  
+div.float img {text-align:center;}  
+div.figure img {text-align:center;}  
+.marginpar {width:20%; float:right; text-align:left; margin-left:auto; margin-top:0.5em; font-size:85%; text-decoration:underline;}  
+.marginpar p{margin-top:0.4em; margin-bottom:0.4em;}  
+table.equation {width:100%;}  
+.equation td{text-align:center; }  
+td.equation { margin-top:1em; margin-bottom:1em; }  
+td.equation-label { width:5%; text-align:center; }  
+td.eqnarray4 { width:5%; white-space: normal; }  
+td.eqnarray2 { width:5%; }  
+table.eqnarray-star, table.eqnarray {width:100%;}  
+div.eqnarray{text-align:center;}  
+div.array {text-align:center;}  
+div.pmatrix {text-align:center;}  
+table.pmatrix {width:100%;}  
+span.pmatrix img{vertical-align:middle;}  
+div.pmatrix {text-align:center;}  
+table.pmatrix {width:100%;}  
+span.bar-css {text-decoration:overline;}  
+img.cdots{vertical-align:middle;}  
+.partToc a, .partToc, .likepartToc a, .likepartToc {line-height: 200%; font-weight:bold; font-size:110%;}  
+.index-item, .index-subitem, .index-subsubitem {display:block}  
+div.caption {text-indent:-2em; margin-left:3em; margin-right:1em; text-align:left;}  
+div.caption span.id{font-weight: bold; white-space: nowrap; }  
+h1.partHead{text-align: center}  
+p.bibitem { text-indent: -2em; margin-left: 2em; margin-top:0.6em; margin-bottom:0.6em; }  
+p.bibitem-p { text-indent: 0em; margin-left: 2em; margin-top:0.6em; margin-bottom:0.6em; }  
+.paragraphHead, .likeparagraphHead { margin-top:2em; font-weight: bold;}  
+.subparagraphHead, .likesubparagraphHead { font-weight: bold;}  
+.quote {margin-bottom:0.25em; margin-top:0.25em; margin-left:1em; margin-right:1em; text-align:justify;}  
+.verse{white-space:nowrap; margin-left:2em}  
+div.maketitle {text-align:center;}  
+h2.titleHead{text-align:center;}  
+div.maketitle{ margin-bottom: 2em; }  
+div.author, div.date {text-align:center;}  
+div.thanks{text-align:left; margin-left:10%; font-size:85%; font-style:italic; }  
+.quotation {margin-bottom:0.25em; margin-top:0.25em; margin-left:1em; }  
+.abstract p {margin-left:5%; margin-right:5%;}  
+div.abstract {width:100%;}  
+.figure img.graphics {margin-left:10%;}  
+body{width:70%;margin:0px auto;font-size: 120%;}  
+img{margin: 0px auto ;display:block}  
+/* end css.sty */  
+ 
+ 
+--> 
+</style> 
+</head><body 
+>
+<div class="maketitle">
+                                                                  
+
+                                                                  
+                                                                  
+
+                                                                  
+
+<h2 class="titleHead">locoGP: Improving Performance by<br />
+Genetic Programming Java Source Code</h2>
+<div class="author" ><span 
+class="cmr-12">Brendan Cody-Kenny, Edgar Galv</span><span 
+class="cmr-12">án-L</span><span 
+class="cmr-12">ópez, Stephen Barrett</span>
+<br />      <span 
+class="cmsy-9">{</span><span 
+class="cmtt-9">codykenb, edgar.galvan, stephen.barrett</span><span 
+class="cmsy-9">}</span><span 
+class="cmtt-9">@scss.tcd.ie </span></div><br />
+<div class="date" ></div>
+</div>
+<div 
+class="abstract" 
+>
+<div class="center" 
+>
+<!--l. 33--><p class="noindent" >
+</p><!--l. 33--><p class="noindent" ><span 
+class="cmbx-9">Abstract</span></p></div>
+     <!--l. 34--><p class="noindent" ><span 
+class="cmr-9">We  present  locoGP,  a  Genetic  Programming  (GP)  system  written  in</span>
+     <span 
+class="cmr-9">Java  for  evolving  Java  source  code.  locoGP  was  designed  to  improve</span>
+     <span 
+class="cmr-9">the performance of programs as measured in the number of operations</span>
+     <span 
+class="cmr-9">executed. Variable test cases are used to maintain functional correctness</span>
+     <span 
+class="cmr-9">during evolution. The operation of locoGP is demonstrated on a number</span>
+     <span 
+class="cmr-9">of typically constructed &#8220;off-the-shelf&#8221; hand-written implementations of</span>
+     <span 
+class="cmr-9">sort  and  prefix-code  programs.  locoGP  was  able  to  find  improvement</span>
+     <span 
+class="cmr-9">opportunities in all test problems.</span>
+</p>
+</div>
+<h3 class="sectionHead"><span class="titlemark">1   </span> <a 
+ id="x1-10001"></a>Introduction</h3>
+<!--l. 43--><p class="noindent" >This paper introduces locoGP<span class="footnote-mark"><a 
+href="#fn1x0" id="fn1x0-bk"><sup class="textsuperscript">1</sup></a></span><a 
+ id="x1-1001f1"></a>,
+a Genetic Programming (GP)<span class="cite">&#x00A0;[<a 
+href="#XKoza1992genetic">14</a>]</span> system written in Java
+for improving program performance using a Java source code
+representation<span class="footnote-mark"><a 
+href="#fn2x0" id="fn2x0-bk"><sup class="textsuperscript">2</sup></a></span><a 
+ id="x1-1002f2"></a>.
+As Java is a widely used general purpose language, the ability to automatically
+improve existing Java programs is of wide interest. In this context, GP is a
+good approach for exploring the implicit effects of source code changes on
+                                                                  
+
+                                                                  
+performance<span class="cite">&#x00A0;[<a 
+href="#Xwhite2008searching">42</a>,&#x00A0;<a 
+href="#Xlangdonperformance">17</a>]</span>.
+</p><!--l. 49--><p class="noindent" >Evolving code in a general language is a challenge due to the broad range of
+constructs that form such languages. A self-contained GP system, such as
+tinyGP<span class="cite">&#x00A0;[<a 
+href="#Xpoli04:_tinyg">29</a>]</span>, includes its own language (as defined by the primitives chosen), parser
+and interpreter. Interpretation and evaluation of programs can be achieved in a
+small amount of code by choosing a set of primitive functions specifically
+for a problem. Fortunately, there exist comprehensive libraries for parsing,
+compiling and interpreting more general Java programs upon which locoGP relies
+heavily.
+</p><!--l. 52--><p class="noindent" >In locoGP, the primitive set is defined by Java language elements which exist in the
+program to be improved and may include statements, expressions, variable names or
+operators. Source code is modified in an Abstract Syntax Tree (AST) representation
+which specifies the typing of nodes and structure of a program in the Java
+language.
+</p><!--l. 54--><p class="noindent" >Performance is measured by counting the number of instructions taken to execute a
+program. Program results are measured for correctness with a problem-specific
+function by counting functionality errors. Fitness is measured by normalising and
+combining performance and functionality error measures in a weighted sum.
+Selection favours minimising the execution count and functionality error in a
+program.
+</p><!--l. 56--><p class="noindent" >This paper extends previous work<span class="cite">&#x00A0;[<a 
+href="#XCody-Kenny:2013:SSBSE">6</a>]</span> by discussing locoGP in detail and presenting
+results of its operation on a number of sort and prefix code problems. A performance
+improvement was found in all problems. locoGP can be readily extended to further
+Java improvement problems or used as a comparison point with other code
+improvement systems.
+</p><!--l. 63--><p class="noindent" >This paper is organised as follows. In the following section we present related
+work. The mechanisms and configuration used in locoGP are covered in
+Section&#x00A0;<a 
+href="#x1-50003">3<!--tex4ht:ref: sec-4 --></a>. The amount and type of improvement found in a number of test
+problems is shown in Section&#x00A0;<a 
+href="#x1-100004">4<!--tex4ht:ref: sec-5 --></a>. The paper is concluded in Section&#x00A0;<a 
+href="#x1-160005">5<!--tex4ht:ref: sec-6 --></a> with future
+work.
+</p><!--l. 65--><p class="noindent" >
+</p>
+<h3 class="sectionHead"><span class="titlemark">2   </span> <a 
+ id="x1-20002"></a>Related work</h3>
+<!--l. 70--><p class="noindent" >Various languages have been used to evolve programs with GP. The choice of
+programming language and the goal of evolution (improvement in this case) impacts
+how GP can be applied.
+</p><!--l. 72--><p class="noindent" >
+</p>
+<h4 class="subsectionHead"><span class="titlemark">2.1   </span> <a 
+ id="x1-30002.1"></a>Programming Languages</h4>
+<!--l. 73--><p class="noindent" >GP has generally been used to evolve S-expressions and programs in specialised
+                                                                  
+
+                                                                  
+languages<span class="cite">&#x00A0;[<a 
+href="#Xspector2001autoconstructive">35</a>]</span>. Programs are frequently restricted to domain specific language
+primitives (for example, the use of a swap function in sort<span class="cite">&#x00A0;[<a 
+href="#Xkinnear1993evolving">12</a>,&#x00A0;<a 
+href="#Xo2014experiments">24</a>]</span> or subsets of
+primitives from general purpose languages<span class="cite">&#x00A0;[<a 
+href="#Xwhite2011evolutionary">41</a>]</span>. Many GP systems include their own
+parsers and interpreters. However, a wide range of programs are written in
+general-purpose imperative languages such as Java and so recent work has turned to
+improving such programs<span class="cite">&#x00A0;[<a 
+href="#XDBLP:journals/cacm/WeimerFGN10">37</a>,&#x00A0;<a 
+href="#Xpetke2014using">26</a>,&#x00A0;<a 
+href="#Xarcuri2008multi">2</a>,&#x00A0;<a 
+href="#Xcastle2012evolving">3</a>]</span>.
+</p><!--l. 78--><p class="noindent" >As the language used becomes more complex, so too does the infrastructure needed
+to modify and evaluate programs. As general purpose languages have non-trivial
+syntax and semantics, code may be translated or compiled to a different
+representation for various purposes. To mitigate the cost of program evaluation,
+programs can be compiled<span class="cite">&#x00A0;[<a 
+href="#Xfukunaga1998genome">9</a>]</span>. Additionally, an intermediate representation has been
+used for modification before a program is compiled where the semantics of a language
+are particularly nuanced, as is the case with C<span class="cite">&#x00A0;[<a 
+href="#Xnecula2002cil">22</a>]</span>. Java bytecode is a relatively
+high-level representation which can be translated into more readable Java code after
+evolution<span class="cite">&#x00A0;[<a 
+href="#Xorlov2011flight">25</a>]</span>.
+</p><!--l. 82--><p class="noindent" >Although programs can be modified in a range of languages, there is a further
+representation choice that can be made when considering how code is to be modified.
+Code can be modified with single edits to language-level elements. Multiple
+elements can be changed where a single modification changes a line of code<span class="cite">&#x00A0;[<a 
+href="#XDBLP:conf/icse/WeimerNGF09">38</a>]</span>,
+a statement as defined by the language<span class="cite">&#x00A0;[<a 
+href="#XLangdonRN1209">18</a>]</span> or as prescribed by a design
+pattern<span class="cite">&#x00A0;[<a 
+href="#Xo2008search">23</a>]</span>.
+</p><!--l. 86--><p class="noindent" >
+</p>
+<h4 class="subsectionHead"><span class="titlemark">2.2   </span> <a 
+ id="x1-40002.2"></a>Improving Code</h4>
+<!--l. 87--><p class="noindent" >When improving existing programs, the language, primitives, representation and
+modification mechanisms are chosen in response to available code. As we are dealing
+with existing code, GP is &#8220;seeded&#8221; with a program which is modified to produce
+variants<span class="cite">&#x00A0;[<a 
+href="#Xarcuri2008multi">2</a>]</span>. Improving existing programs infers a large amount of code reuse where
+primitives and genetic material are generally gleaned from the seed program
+under improvement. Primitives are still hand-crafted and domain specific in
+some sense as the original program was constructed for a particular purpose.
+Primitives are not, however, created by the GP practitioner specifically to aid
+evolution.
+</p><!--l. 91--><p class="noindent" >During GP, the majority of modifications to a seed program are highly likely to
+produce degraded variants. It may not be possible to evaluate a large percentage of
+the programs created during random modification as they may not compile or may
+contain infinite loops<span class="cite">&#x00A0;[<a 
+href="#Xschulte2012software">32</a>]</span>. When programs do not compile, they are typically
+discarded<span class="cite">&#x00A0;[<a 
+href="#XDBLP:journals/cacm/WeimerFGN10">37</a>,&#x00A0;<a 
+href="#Xpetke2013applying">27</a>]</span>. Among program variants that do compile, the seed is
+likely to have relatively high fitness and represents a local optima in the
+population.
+</p><!--l. 93--><p class="noindent" >To ensure the best fitness in each generation does not drop, <span 
+class="cmti-10">elitism </span>promotes the best
+programs from the previous generation to the next. A percentage of the worst
+programs in the next generation can be replaced by the best of the previous. As
+                                                                  
+
+                                                                  
+program modification is highly destructive, elitism rates used for program
+improvement tend to be high. Up to 50% of programs may be removed<span class="cite">&#x00A0;[<a 
+href="#XDBLP:conf/gecco/ForrestNWG09">8</a>]</span>, though
+this approach uses &#8220;crossing back&#8221; between each remaining program and the
+original program to create the next generation instead of using more standard
+elitism.
+</p><!--l. 99--><p class="noindent" >In GP, it is important to capture the characteristics of a desired solution to
+ensure evolutionary pressure is towards the desired goals. Designing a fitness
+function which gives a scale for how good a program is, can be non-trivial
+particularly when the scale relates to functionality<span class="cite">&#x00A0;[<a 
+href="#Xkinnear1993evolving">12</a>]</span>. The issue lies in
+measuring program functionality in order of increasing utility. In a sorting
+example, a program which swaps two identical values in a list would be
+considered better than a program which does not change the list at all even
+though the fitness remains the same. If a desired trait cannot be measured, or
+receives a value lower than it should, then GP will not promote its use in the
+population.
+</p><!--l. 102--><p class="noindent" >To maintain correctness, a graduated functionality metric can be created by summing
+the results of binary test cases as part of the fitness function<span class="cite">&#x00A0;[<a 
+href="#Xarcuri2008multi">2</a>,&#x00A0;<a 
+href="#Xle2012representations">21</a>]</span>. The seed
+program can be used as an oracle<span class="cite">&#x00A0;[<a 
+href="#Xlangdon2013optimising">19</a>]</span> when given various test input data. Binary
+test cases as used in Software Engineering (SE) are distinct from the traditional
+use of a fitness functions in GP. In SE, each test case returns a Boolean
+value. In GP the correctness of a single result is calculated along a variable
+scale.
+</p><!--l. 105--><p class="noindent" >Measuring performance introduces parsimony pressure to the search process resulting
+in less costly programs, mitigating the issue of bloat somewhat<span class="cite">&#x00A0;[<a 
+href="#Xsoule1998effects">34</a>]</span>. How
+performance is measured focuses evolutionary pressure toward finding different
+improvements. Performance and even functionality gains can be achieved by
+specialising code for a particular input data type<span class="cite">&#x00A0;[<a 
+href="#Xlangdon2013optimising">19</a>]</span> or distribution<span class="cite">&#x00A0;[<a 
+href="#Xarcuri2008multi">2</a>]</span>. A more
+general representative set of input data can be expected to find only general
+algorithmic improvement.
+</p><!--l. 109--><p class="noindent" >Program execution performance can be measured as wall clock time, number of CPU
+cycles taken, number of method calls, number of lines executed or even as the energy
+consumption of the application.
+</p><!--l. 111--><p class="noindent" >Wall clock time may be the most far reaching as it measures the length of time a
+program takes to complete regardless of how much memory, network, CPU or energy
+is used during execution. Therefore a code improvement in any of these areas can be
+detected and promoted. Measuring all of these traits in one metric introduces wide
+variability every time the same program is executed with the same input data as the
+execution environment is difficult to control. Network, CPU or virtual machine
+scheduling can add variability<span class="cite">&#x00A0;[<a 
+href="#Xlambert2008platform">16</a>]</span>. Evaluation can be repeated to reduce
+the measurement noise but is expensive. Where the measurement signal is
+larger than any noise, wall clock time is particularly useful<span class="cite">&#x00A0;[<a 
+href="#Xchennupati2015automatic">4</a>]</span>. Estimates of
+execution cost can also be used to evolve programs with respect to power
+consumption<span class="cite">&#x00A0;[<a 
+href="#Xwhite2008searching">42</a>]</span>.
+</p><!--l. 114--><p class="noindent" >Ignoring environment specific measures gives a deterministic measure. Such
+measures include counting the number of lines of code<span class="cite">&#x00A0;[<a 
+href="#XLangdonRN1209">18</a>]</span> and instructions
+executed<span class="cite">&#x00A0;[<a 
+href="#Xkuperberg2008a">15</a>]</span>.
+                                                                  
+
+                                                                  
+                                                                  
+
+                                                                  
+</p><!--l. 117--><p class="noindent" ><a 
+ id="x1-40011"></a></p><hr class="float" /><div class="float" 
+>
+                                                                  
+
+                                                                  
+<div class="center" 
+>
+<!--l. 118--><p class="noindent" >
+</p>
+<div class="tabular"> <table id="TBL-2" class="tabular" 
+cellspacing="0" cellpadding="0" rules="groups" 
+><colgroup id="TBL-2-1g"><col 
+id="TBL-2-1" /></colgroup><colgroup id="TBL-2-2g"><col 
+id="TBL-2-2" /></colgroup><colgroup id="TBL-2-3g"><col 
+id="TBL-2-3" /></colgroup><colgroup id="TBL-2-4g"><col 
+id="TBL-2-4" /></colgroup><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-1-"><td  style="white-space:nowrap; text-align:left;" id="TBL-2-1-1"  
+class="td11"><span 
+class="cmti-10">Approach                              </span></td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-1-2"  
+class="td11"><span 
+class="cmti-10">Representation                </span></td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-1-3"  
+class="td11"><span 
+class="cmti-10">Improvement                  </span></td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-1-4"  
+class="td11"><span 
+class="cmti-10">Fitness Metric         </span></td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-2-"><td  style="white-space:nowrap; text-align:left;" id="TBL-2-2-1"  
+class="td11">locoGP                                    </td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-2-2"  
+class="td11">Java (AST)                     </td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-2-3"  
+class="td11">Performance                    </td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-2-4"  
+class="td11">Bytecode Operations </td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-3-"><td  style="white-space:nowrap; text-align:left;" id="TBL-2-3-1"  
+class="td11">Langdon<span class="cite">&#x00A0;[<a 
+href="#Xlangdonperformance">17</a>]</span>, Petke<span class="cite">&#x00A0;[<a 
+href="#XPetke:2013:SSBSE">28</a>]</span>             </td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-3-2"  
+class="td11">C++ (Statement)             </td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-3-3"  
+class="td11">Performance, Specialisation</td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-3-4"  
+class="td11">Line Count              </td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-4-"><td  style="white-space:nowrap; text-align:left;" id="TBL-2-4-1"  
+class="td11">Arcuri<span class="cite">&#x00A0;[<a 
+href="#Xarcuri2008multi">2</a>]</span>, White<span class="cite">&#x00A0;[<a 
+href="#Xwhite2011evolutionary">41</a>]</span>                </td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-4-2"  
+class="td11">Java-like (AST)                </td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-4-3"  
+class="td11">Performance                    </td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-4-4"  
+class="td11">Simulated CPU Cycle</td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-5-"><td  style="white-space:nowrap; text-align:left;" id="TBL-2-5-1"  
+class="td11">Walsh &amp; Ryan (Paragen)<span class="cite">&#x00A0;[<a 
+href="#Xryan1997paragen">31</a>,&#x00A0;<a 
+href="#Xconor2000automatic">30</a>]</span>,</td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-5-2"  
+class="td11">Parallelisation Instructions </td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-5-3"  
+class="td11">Parallel Programs             </td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-5-4"  
+class="td11">Functionality           </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-6-"><td  style="white-space:nowrap; text-align:left;" id="TBL-2-6-1"  
+class="td11">Chennupati (MCGE)<span class="cite">&#x00A0;[<a 
+href="#Xchennupati2015automatic">4</a>]</span>             </td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-6-2"  
+class="td11">                       </td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-6-3"  
+class="td11">                       </td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-6-4"  
+class="td11">                  </td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-7-"><td  style="white-space:nowrap; text-align:left;" id="TBL-2-7-1"  
+class="td11">Orlov (FINCH)<span class="cite">&#x00A0;[<a 
+href="#Xorlov2011flight">25</a>]</span>                   </td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-7-2"  
+class="td11">Java (Byecode)                </td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-7-3"  
+class="td11">Functionality                   </td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-7-4"  
+class="td11">Error Count             </td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-8-"><td  style="white-space:nowrap; text-align:left;" id="TBL-2-8-1"  
+class="td11">Castle<span class="cite">&#x00A0;[<a 
+href="#Xcastle2012evolving">3</a>]</span>                                 </td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-8-2"  
+class="td11">Java-like (AST)                </td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-8-3"  
+class="td11">Functionality                   </td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-8-4"  
+class="td11">Error Count             </td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-9-"><td  style="white-space:nowrap; text-align:left;" id="TBL-2-9-1"  
+class="td11">O&#8217;Cinnéide<span class="cite">&#x00A0;[<a 
+href="#Xcinneide2001automated">5</a>]</span>, Simons<span class="cite">&#x00A0;[<a 
+href="#Xsimons2011interactive">33</a>]</span>         </td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-9-2"  
+class="td11">Java (Refactoring Patterns)</td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-9-3"  
+class="td11">Quality (e.g. elegance)       </td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-9-4"  
+class="td11">Software Metrics       </td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-10-"><td  style="white-space:nowrap; text-align:left;" id="TBL-2-10-1"  
+class="td11">                             </td></tr></table>
+</div></div>
+<br /> <div class="caption" 
+><span class="id">Table&#x00A0;1: </span><span  
+class="content">Feature Comparison of Improvement Approaches.</span></div><!--tex4ht:label?: x1-40011 -->
+                                                                  
+
+                                                                  
+</div><hr class="endfloat" />
+<h3 class="sectionHead"><span class="titlemark">3   </span> <a 
+ id="x1-50003"></a>locoGP</h3>
+<!--l. 138--><p class="noindent" >locoGP utilises many of the mechanisms from the related work such as seeding and
+modification at the language level. The main distinction between the related work
+and locoGP is the use of Java source code. locoGP is seeded with compilable and
+fully functional source code which is modified at the Java language level. A summary
+comparison between locoGP and other notable improvement systems can be seen in
+Table&#x00A0;<a 
+href="#x1-40011">1<!--tex4ht:ref: rwcomparison --></a><span class="footnote-mark"><a 
+href="#fn3x0" id="fn3x0-bk"><sup class="textsuperscript">3</sup></a></span><a 
+ id="x1-5001f3"></a>.
+</p><!--l. 141--><p class="noindent" >An initial population of individuals is generated by taking the program to be evolved
+as the seed individual and mutating it. As the seed program represents a local
+optima, and is likely to be the most fit program for a number of the initial
+generations during GP, we seek to encourage diversity in the population. If we do not
+encourage diversity, we may end up with a population where the majority of
+programs are very similar to the seed. New generations of individuals are created by
+the application of mutation (30%) and crossover (90%) operators as described in
+Section <a 
+href="#x1-70003.2">3.2<!--tex4ht:ref: sec-4-2 --></a>.
+</p><!--l. 144--><p class="noindent" >A gentle selection pressure (tournament of two) and aggressive mutation rate (30%)
+is chosen. Modifying programs in Java is highly likely to produce disfunctional
+or even non-compilable programs. Programs are in competition with an
+already functioning seed program. We end up with many programs which are
+close to the seed due to selection, and many programs which have very poor
+fitness due to destructive modifications. To balance out the distribution of
+programs along the fitness scale, we use elitism which selects a small number of
+programs at each fitness value and replaces the worst 30% of programs with
+these.
+</p><!--l. 152--><p class="noindent" >
+</p>
+<h4 class="subsectionHead"><span class="titlemark">3.1   </span> <a 
+ id="x1-60003.1"></a>Working with Java Source Code</h4>
+<!--l. 154--><p class="noindent" >locoGP performs the cycle of parsing, compilation, instrumentation and execution of
+programs in memory with results written to disk periodically. locoGP relies on the
+freely available and widely popular Eclipse Java Development Tools (JDT) for
+parsing programs to an AST representation. The JDT provides methods for cloning,
+traversing and modifying program trees and is also used to gather statements,
+expressions and variables from a program which can then be modified as per the GP
+operators.
+</p><!--l. 157--><p class="noindent" >Primitives are drawn from those that exist within the program to be improved.
+Node selection is not uniform in an AST as each node is not represented
+in the same way within an AST. For example, operators do not exist as
+nodes in an AST but are attributes of expression nodes. An AST gives us a
+representation devoid of source code artifacts such as parentheses and line
+                                                                  
+
+                                                                  
+terminators. Depending on the node type chosen, the operation performed may be
+different.
+</p><!--l. 160--><p class="noindent" >When creating a new individual, a parent program is chosen using tournament
+selection. A clone is made of the selected program using the JDT and the
+new program is then modified using mutation, or crossover with another
+parent program (requiring an additional tournament). For each crossover
+or mutation operator application, only one offspring individual program is
+generated.
+</p><!--l. 164--><p class="noindent" >The Java language syntax is enforced by the AST and is used to restrict node
+compatibility. Where a node such as an expression is chosen, it is possible
+that the node can be replaced with another expression or a variable name.
+Where a statement is selected, it may be replaced by another statement, or
+statement sub-type such as an <span 
+class="cmtt-10">IF </span>or <span 
+class="cmtt-10">WHILE </span>statement. A replacement node
+can be a whole sub-tree, e.g. in the case of a statement replacement. In
+this case, the node which is the root of the sub-tree is of concern. If we
+pick a block, we clone some other random line of code as an addition to the
+block.
+</p><!--l. 169--><p class="noindent" >While typing prevents some invalid code replacement, such as replacing an
+operator with a variable, the AST can nonetheless be modified to produce
+syntactically incorrect programs which do not compile. Due to this, the
+number of discarded programs created due to compilation errors is relatively
+high.
+</p><!--l. 172--><p class="noindent" >
+</p>
+<h4 class="subsectionHead"><span class="titlemark">3.2   </span> <a 
+ id="x1-70003.2"></a>Operators</h4>
+<!--l. 175--><p class="noindent" >Crossover and mutation operators are used to modify code as per AST typing. We
+pick a node and then decide what to do with it depending on what is possible. Once
+a node is selected, it and the whole AST sub-tree is subject to replacement, deletion
+or cloning, depending on node and GP operator. It is also possible for two code edits
+to be made where crossover and mutation are both applied in creating a new
+program.
+</p><!--l. 183--><p class="noindent" >Two parent programs are required for crossover to be applied. The subtree at a
+randomly selected node in the first program is replaced with the clone of a subtree of
+an allowed type from the second program. Crossover only allows the exchange of
+statement and expression node types (both infer sub-tree replacement) between two
+programs. Leaf nodes may not be involved in this process as the modification of a
+single element in a program is handled by mutation. Crossover is repeatedly
+attempted until a compilable program is produced, or a maximum of 100 attempts
+have been made. After 100 attempts, a different pair of parent programs are selected
+using tournaments.
+</p><!--l. 188--><p class="noindent" >Mutation involves applying change to a single individual program in the form of
+cloning, deletion or replacement of randomly selected nodes. It is used exclusively to
+generate the initial population of programs and in conjunction with crossover for
+                                                                  
+
+                                                                  
+subsequent generations. How mutation is performed is dependent on the node that is
+selected within an individual. If the node is a block statement, then a statement is
+inserted, with no choice for deletion or modification of the contents of the block. If
+the node is a particular expression, such as infix or postfix, then the operator is
+changed for a different one. If the node is a statement, its contents may be modified
+or the statement can be deleted. If the node is of another type, such as variable,
+then it can only be replaced and deletion is not an option due to syntax
+constraints.
+</p>
+<div class="table">
+                                                                  
+
+                                                                  
+<!--l. 196--><p class="noindent" ><a 
+ id="x1-70012"></a></p><hr class="float" /><div class="float" 
+>
+                                                                  
+
+                                                                  
+<div class="tabular"> <table id="TBL-3" class="tabular" 
+cellspacing="0" cellpadding="0" rules="groups" 
+><colgroup id="TBL-3-1g"><col 
+id="TBL-3-1" /></colgroup><colgroup id="TBL-3-2g"><col 
+id="TBL-3-2" /></colgroup><tr 
+class="hline"><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-1-"><td  style="white-space:nowrap; text-align:left;" id="TBL-3-1-1"  
+class="td11"><span 
+class="cmti-9">Parameter                   </span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-3-1-2"  
+class="td11">                   <span 
+class="cmti-9">Value</span></td></tr><tr 
+class="hline"><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-2-"><td  style="white-space:nowrap; text-align:left;" id="TBL-3-2-1"  
+class="td11"><span 
+class="cmr-9">Representation </span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-3-2-2"  
+class="td11"> <span 
+class="cmr-9">Java AST</span></td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-3-"><td  style="white-space:nowrap; text-align:left;" id="TBL-3-3-1"  
+class="td11"><span 
+class="cmr-9">Operators                      </span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-3-3-2"  
+class="td11">      <span 
+class="cmr-9">Crossover, Mutation</span></td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-4-"><td  style="white-space:nowrap; text-align:left;" id="TBL-3-4-1"  
+class="td11"><span 
+class="cmr-9">Crossover Rate               </span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-3-4-2"  
+class="td11">                     <span 
+class="cmr-9">0.9</span></td></tr><tr 
+class="hline"><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-5-"><td  style="white-space:nowrap; text-align:left;" id="TBL-3-5-1"  
+class="td11"><span 
+class="cmr-9">Mutation Rate </span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-3-5-2"  
+class="td11"> <span 
+class="cmr-9">0.3</span></td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-6-"><td  style="white-space:nowrap; text-align:left;" id="TBL-3-6-1"  
+class="td11"><span 
+class="cmr-9">Individual Selection         </span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-3-6-2"  
+class="td11"><span 
+class="cmr-9">Tournament (2) (read text)</span></td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-7-"><td  style="white-space:nowrap; text-align:left;" id="TBL-3-7-1"  
+class="td11"><span 
+class="cmr-9">Initialisation Method       </span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-3-7-2"  
+class="td11">            <span 
+class="cmr-9">Mutated Seed</span></td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-8-"><td  style="white-space:nowrap; text-align:left;" id="TBL-3-8-1"  
+class="td11"><span 
+class="cmr-9">Max Operator Application</span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-3-8-2"  
+class="td11">                     <span 
+class="cmr-9">100</span></td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-9-"><td  style="white-space:nowrap; text-align:left;" id="TBL-3-9-1"  
+class="td11"><span 
+class="cmr-9">Population Size               </span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-3-9-2"  
+class="td11">                     <span 
+class="cmr-9">250</span></td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-10-"><td  style="white-space:nowrap; text-align:left;" id="TBL-3-10-1"  
+class="td11"><span 
+class="cmr-9">Generations                   </span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-3-10-2"  
+class="td11">                     <span 
+class="cmr-9">100</span></td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-11-"><td  style="white-space:nowrap; text-align:left;" id="TBL-3-11-1"  
+class="td11"><span 
+class="cmr-9">Elitism                          </span></td><td  style="white-space:nowrap; text-align:right;" id="TBL-3-11-2"  
+class="td11">      <span 
+class="cmr-9">30% of unique fittest</span></td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-12-"><td  style="white-space:nowrap; text-align:left;" id="TBL-3-12-1"  
+class="td11">                       </td></tr></table></div>
+<br /> <div class="caption" 
+><span class="id">Table&#x00A0;2: </span><span  
+class="content">Baseline GP Configuration.</span></div><!--tex4ht:label?: x1-70012 -->
+                                                                  
+
+                                                                  
+</div><hr class="endfloat" />
+</div>
+<h4 class="subsectionHead"><span class="titlemark">3.3   </span> <a 
+ id="x1-80003.3"></a>Fitness Function</h4>
+<!--l. 220--><p class="noindent" >After modification, the modified AST representation is converted back to source code
+text and compiled to bytecode. The resulting bytecode is instrumented using
+a bytecode counting library<span class="cite">&#x00A0;[<a 
+href="#Xkuperberg2008a">15</a>]</span>. Instrumentation adds extra code to the
+program to count the number of bytecodes that are executed when the code is
+run.
+</p><!--l. 223--><p class="noindent" >We measure code operations executed specifically by counting bytecode executed in
+Java<span class="cite">&#x00A0;[<a 
+href="#Xkuperberg2008a">15</a>]</span><span class="footnote-mark"><a 
+href="#fn4x0" id="fn4x0-bk"><sup class="textsuperscript">4</sup></a></span><a 
+ id="x1-8001f4"></a>.
+</p><!--l. 225--><p class="noindent" >The evaluation mechanism, and how performance is measured affects the type of
+program improvement that is likely to be found. Measuring operations performed
+ignores platform specific differences in performance, and means the GP algorithm
+differentiates programs only on their ability to reduce execution count. This is
+expected to promote search for general code improvements. Counting bytecodes
+executed gives a measure which does not vary between runs, and can be expected to
+be portable.
+</p><!--l. 227--><p class="noindent" >When executed, bytecode may contain infinite loops and so execution is restricted by
+a timeout period<span class="cite">&#x00A0;[<a 
+href="#Xweimer2009automatically">39</a>]</span>, after which programs are halted.
+</p><!--l. 229--><p class="noindent" >The bytecode is executed numerous times with a range of input data and the
+returned values are compared with known correct values. Results are tested for
+correctness error against the results obtained from executing the seed program. Our
+measure of correctness error is not binary, but graduated. A problem-specific fitness
+function is used in conjunction with the seed program acting as oracle. While we can
+use a general measure for performance, functionality measures are problem
+specific and are discussed further alongside the problems we use in Section
+<a 
+href="#x1-110004.1">4.1<!--tex4ht:ref: sec-5-1 --></a>.
+</p><!--l. 232--><p class="noindent" >Assuming a program halts within the timeout period, counting and test case results
+can be collected. Programs which compile and execute, but exhibit runtime errors or
+do not finish within the time bounds are given the worst fitness values possible so
+that elitism or selection can discard them.
+</p><!--l. 234--><p class="noindent" >Both performance and functionality measures are normalised against the seed
+program. Execution count of a variant program is divided by the execution count of
+the seed program. If the performance is the same as the seed, a normalised
+performance value of one results. The summed error count from all test cases is
+subtracted from the error count value for the seed program and divided by the seed
+error count (Eq.&#x00A0;<a 
+href="#x1-8002r1">1<!--tex4ht:ref: eq:functionality --></a>). If a program is considered correct, evaluation will give a value of
+zero for functionality error.
+</p>
+<table 
+class="equation"><tr><td>
+                                                                  
+
+                                                                  
+<center class="math-display" >
+<img 
+src="locoGP0x.png" alt="                 Errorseed  -  Errorindividual
+F uncScore    =  -------------------------------
+                           Errorseed
+" class="math-display"  /><a 
+ id="x1-8002r1"></a></center></td><td class="equation-label">(1)</td></tr></table>
+<!--l. 243--><p class="nopar" >
+</p><!--l. 247--><p class="noindent" >The fitness function is a weighted sum of performance and 100 times the
+functionality error as shown in Eq.&#x00A0;<a 
+href="#x1-8003r2">2<!--tex4ht:ref: eq:fitness --></a>.
+</p><!--l. 249--><p class="noindent" >The weighting of 100 allows semi-functional programs to be &#8220;binned&#8221; or grouped
+roughly by their functionality. Two correct programs (or programs which score the
+same functionality error) are then distinguished by performance values only. A
+correct program having the same performance as the seed will receive a fitness
+of one. Programs which use fewer operations will receive a value less than
+1.
+</p><!--l. 253--><p class="noindent" >As selection favours smaller fitness values, we are minimising the number of
+operations executed when a program is run as well as the functionality error. Thus,
+there is a built-in parsimony pressure<span class="cite">&#x00A0;[<a 
+href="#Xsoule1998effects">34</a>]</span> towards programs which are no
+longer than they need to be to provide the desired functionality. Where a
+program is functionally correct, any additional code executed reduces the
+fitness value. This parsimony pressure means that programs do not grow too
+long in size as superfluous code is removed and bloat is not a major issue in
+locoGP.
+</p>
+<table 
+class="equation"><tr><td>
+<center class="math-display" >
+<img 
+src="locoGP1x.png" alt="       ExecutionCountind
+F  =  ------------------------ + 100  * F uncScore
+      ExecutionCountseed
+" class="math-display"  /><a 
+ id="x1-8003r2"></a></center></td><td class="equation-label">(2)</td></tr></table>
+<!--l. 261--><p class="nopar" >
+                                                                  
+
+                                                                  
+</p><!--l. 273--><p class="noindent" >
+</p>
+<h5 class="subsubsectionHead"><span class="titlemark">3.3.1   </span> <a 
+ id="x1-90003.3.1"></a>Elitism</h5>
+<!--l. 275--><p class="noindent" >We use a form of elitism at the rate of 30% which we term &#8220;diverse elitism&#8221;. When
+gathering the elite programs from the previous generation, we truncate the decimal
+part of fitness values. We then take a program from the top 30% <span 
+class="cmti-10">unique </span>fitness
+values. Ignoring the decimal place means we are largely ignoring performance, and
+only distinguishing on functionality for the most part. For each whole number fitness
+value, we select only one program. The effect of this is that we do not select
+similar programs which have the same functionality. The worst 30% of the
+new generation is selected (ignoring diversity) and is replaced by these elite
+programs.
+</p><!--l. 286--><p class="noindent" >
+</p>
+<h3 class="sectionHead"><span class="titlemark">4   </span> <a 
+ id="x1-100004"></a>Experiments</h3>
+<!--l. 288--><p class="noindent" >We experiment with locoGP on a number of sort algorithms and a Huffman codebook
+generating algorithm.
+</p><!--l. 290--><p class="noindent" >
+</p>
+<h4 class="subsectionHead"><span class="titlemark">4.1   </span> <a 
+ id="x1-110004.1"></a>Problem Set</h4>
+<!--l. 292--><p class="noindent" >The sort implementations were taken mostly unmodified or &#8220;off-the-shelf&#8221; from
+online sources<span class="cite">&#x00A0;[<a 
+href="#Xrosettacode">36</a>]</span>. An implementation of prefix codebook generation as used during
+Huffman coding<span class="cite">&#x00A0;[<a 
+href="#Xhuffman1952method">11</a>]</span> was written to include one of our sort algorithms as a
+sub-function. Our &#8220;prefix codebook&#8221; problem entails finding the set of shortest
+codewords where no code forms a prefix of another. The algorithm is passed an array
+of characters where each character is represented by a fixed number of bits. The
+algorithm is expected to return a codebook of character to codeword mappings,
+where frequently used characters are represented by codewords of fewer bits. The
+bubblesort algorithm is embedded in the candidate solution as we are familiar with
+the improvements which exist. The Huffman codebook problem, although
+incorporating bubblesort (and in turn the same improvement opportunities), has a
+different fitness function, larger seed program size, and is broken into a number of
+classes.
+</p><!--l. 298--><p class="noindent" >These programs consist of common algorithms that are well studied, have many
+versions with reasonable interest in their improvement. The problems are relatively
+small, but their size is large enough that we can assume GP is unlikely to generate
+these programs from scratch without being given domain specific primitives<span class="cite">&#x00A0;[<a 
+href="#Xagapitos2007evolving">1</a>]</span>. They
+are big enough to pose as difficult problems for GP to improve, but small enough
+that any improvements may be understood.
+                                                                  
+
+                                                                  
+</p><!--l. 300--><p class="noindent" >
+</p>
+<h5 class="subsubsectionHead"><span class="titlemark">4.1.1   </span> <a 
+ id="x1-120004.1.1"></a>Problem-specific Functionality Measures</h5>
+<!--l. 302--><p class="noindent" >Measuring functionality at a detailed level is not trivial and requires careful
+consideration to get functionality improvements in order of importance<span class="cite">&#x00A0;[<a 
+href="#Xkinnear1993evolving">12</a>]</span>.
+</p><!--l. 304--><p class="noindent" >For a sort algorithm, we construct a measure for how &#8220;sorted&#8221; a list of numbers is by
+counting how far each number is away from where it should be in a correctly sorted
+list. This is calculated by summing up &#8220;errors&#8221; in placement of values in a list. If a
+value is in the right location, the error count is incremented by one. If the value is
+not in its correct place but has been moved then error count is incremented by
+two. If the value has not moved at all, then error count is incremented by
+three. This approach measures when a value does not move and allocates the
+highest error value. At least when a value has been moved, albeit to the
+wrong place, the program is exhibiting functionality which is more desirable
+than not moving the value at all. A number of fixed test arrays are used to
+inspect variant sort programs. Each test array consists of a list of integers.
+The sort algorithm in the Java library is used as an oracle to check correct
+answers.
+</p><!--l. 306--><p class="noindent" >For the prefix codebook problem, we have written a function which checks if the
+result returned is a valid set of prefix codes. Test arrays of characters are used. A
+prefix codebook should have the same number of codes as there are different
+characters in the input data. If the number of codewords returned is incorrect, we
+count the number of extra or missing codes and add them to the error. We count the
+number of prefix violations and add them to the error count. A prefix violation
+occurs when a codeword forms the prefix of any other codeword. As the goal of
+prefix code algorithms is to reduce the overall length of valid codewords for a
+particular input, we sum the length of each codeword and add this to the
+error.
+</p><!--l. 311--><p class="noindent" >If either a codebook length or prefix violation error is found, the error count
+is further penalised by the extra addition of the length of all codewords
+in the oracle codebook answer. As codebook length and prefix violations
+may be small, we must ensure that a program which has either of these
+errors does not get a better score than the oracle answer. If a single prefix
+error is detected, the value of one may be added to the error, even though
+the codeword length is smaller than the oracle answer. Without penalising
+such cases, a program with prefix errors would appear better than a correct
+oracle answer. Multiple test values are used in both cases of sort and prefix
+codes. The error count from each test is summed as overall functionality error
+count.
+</p><!--l. 314--><p class="noindent" >
+</p>
+<h4 class="subsectionHead"><span class="titlemark">4.2   </span> <a 
+ id="x1-130004.2"></a>Results</h4>
+<!--l. 317--><p class="noindent" >To introduce locoGP and characterise its operation, we initially focus on a single run
+                                                                  
+
+                                                                  
+on a bubblesort implementation and then show results across a number of sort and
+prefix code programs.
+</p><!--l. 319--><p class="noindent" >
+</p>
+<h5 class="subsubsectionHead"><span class="titlemark">4.2.1   </span> <a 
+ id="x1-140004.2.1"></a>Bubblesort</h5>
+<!--l. 321--><p class="noindent" >Figure&#x00A0;<a 
+href="#x1-140011">1<!--tex4ht:ref: fig:GPExampleScatterGraph --></a> shows a scatter plot of fitness values for all individuals in each generation
+and the average fitness per generation of a typical GP run on bubblesort. Each dot in
+the graph is the fitness of a single individual program. The line shows the average
+fitness of each generation.
+</p><!--l. 325--><p class="noindent" >The fittest individuals from each generation can be seen as the lowest dots in Figure
+<a 
+href="#x1-140011">1<!--tex4ht:ref: fig:GPExampleScatterGraph --></a>. By following the lowest values, we can see a single distinct improvement to 0.6 at
+generation 57. This represents a saving of 40% of the execution cost of this algorithm
+in terms of bytecode&#8217;s executed (note this does not necessarily equate to 40%
+wall-clock time saving).
+</p>
+<hr class="figure" /><div class="figure" 
+>
+                                                                  
+
+                                                                  
+<a 
+ id="x1-140011"></a>
+                                                                  
+
+                                                                  
+
+<!--l. 333--><p class="noindent" ><img 
+src="Graphstandalone.png" alt="PIC"  
+width="793.50105pt" height="535.07306pt"  />
+<br /> </p><div class="caption" 
+><span class="id">Figure&#x00A0;1: </span><span  
+class="content">Fitness Scatter and Average for GP on Bubblesort (lower is better).</span></div><!--tex4ht:label?: x1-140011 -->
+                                                                  
+
+                                                                  
+</div><hr class="endfigure" />
+<!--l. 343--><p class="noindent" >As indicated in Section&#x00A0;<a 
+href="#x1-50003">3<!--tex4ht:ref: sec-4 --></a>, the first generation is created with mutation only. When
+starting GP from a correct seed program, fitness improvements are rare. Due to the
+representation and operators, it is highly unlikely that the seed program will
+be improved upon when initially modified. The assumption being that the
+seed is some local optima which must be escaped before an improvement
+can be made. Most changes to the seed will degrade the fitness, especially
+when using programming languages which have complicated syntax and
+semantics. Thus the program must in some sense be &#8220;broken&#8221; before it can be
+improved.
+</p><!--l. 348--><p class="noindent" >In generations subsequent to the first, programs are created with crossover and
+mutation. The average fitness line in <a 
+href="#x1-140011">1<!--tex4ht:ref: fig:GPExampleScatterGraph --></a> shows the average population fitness
+deteriorates (moves higher in the graph) in initial generations. Elitism favours
+better programs which become more numerous in subsequent generations. In
+later generations, there is a greater chance that a new individual will have a
+better fitness, which can be seen as the dots lower than fitness one in the
+graph.
+</p><!--l. 351--><p class="noindent" >Of note is the modality of the distribution of fitness values in each generation.
+Fitness distribution in each generation is multi-modal due to the weighted sum
+fitness function and semantics of the particular implementation under improvement.
+Even though the actual fitness values of variant programs are somewhat arbitrary
+under random modification, it is curious to consider that the language semantics,
+program code and operations of GP result in some program variants being
+created in abundance which cluster at certain fitness values. Few individuals
+evaluate to some regions of the fitness gradient. This can be seen in the
+grouping of indvidual fitness values into rows on the graph. This may be
+because our multiplication of 100 of the functionality provides spacing between
+functionality levels which the performance variability is not large enough to fill in
+the gap between functionality &#8220;levels&#8221;. Although the tournament size of
+2 we use is a light pressure on the population fitness, the elitism rate of
+30% is more aggressive and this can be seen as the algorithm progresses
+where the worst individuals are being replaced faster than they are being
+created.
+</p><!--l. 356--><p class="noindent" >Applying GP to software improvement provides a graph showing few fitness
+improvements to the seed. More tradtional applications of GP, which are used to
+&#8220;grow&#8221; a solution program outright, are more likely to show a graph with a smoother
+curve of many improvements in fitness. GP on existing fully-functional programs is
+starting from a local optima and is attempting to find one of very few improvements.
+The overall shape of the graph shows the scale of the problem, and the jaggedness of
+the search space, where a smooth gradient of program improvement is not likely.
+Visually, the best individual programs (i.e. the lowest dots in each generation) in <a 
+href="#x1-140011">1<!--tex4ht:ref: fig:GPExampleScatterGraph --></a>
+show a straight line at value one, until generation 57 where fitness improves to
+0.6.
+</p><!--l. 361--><p class="noindent" >Considering that improvements in fitness are rare, it may unfortunately appear that
+improved programs are found more or less at random, and the genetic nature of
+the GP algorithm does not give it much advantage over random search for
+                                                                  
+
+                                                                  
+the problem of program improvement. Although there is the temptation to
+classify this search process as being more &#8220;random&#8221; than it is &#8220;genetic&#8221;, GP
+on subsequent problems shows that genetic operators are advantageous for
+delivering even a single fitness improvement. Even though there may be
+no fitness improvement on the seed observed, the search process is busy
+exploring lineages of programs which are necessary to reach an improved
+variant.
+</p>
+<h5 class="subsubsectionHead"><span class="titlemark">4.2.2   </span> <a 
+ id="x1-150004.2.2"></a>Sort and Prefix Codes</h5>
+                                                                  
+
+                                                                  
+<!--l. 365--><p class="noindent" ><a 
+ id="x1-150013"></a></p><hr class="float" /><div class="float" 
+>
+                                                                  
+
+                                                                  
+<div class="center" 
+>
+<!--l. 366--><p class="noindent" >
+</p>
+<div class="tabular"> <table id="TBL-4" class="tabular" 
+cellspacing="0" cellpadding="0" rules="groups" 
+><colgroup id="TBL-4-1g"><col 
+id="TBL-4-1" /></colgroup><colgroup id="TBL-4-2g"><col 
+id="TBL-4-2" /></colgroup><colgroup id="TBL-4-3g"><col 
+id="TBL-4-3" /></colgroup><colgroup id="TBL-4-4g"><col 
+id="TBL-4-4" /></colgroup><colgroup id="TBL-4-5g"><col 
+id="TBL-4-5" /></colgroup><colgroup id="TBL-4-6g"><col 
+id="TBL-4-6" /></colgroup><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-4-1-"><td  style="white-space:nowrap; text-align:left;" id="TBL-4-1-1"  
+class="td11"><span 
+class="cmti-10">Problem Name     </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-4-1-2"  
+class="td11"><span 
+class="cmti-10">AST Nodes</span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-4-1-3"  
+class="td11"><span 
+class="cmti-10">Improvement Nodes</span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-4-1-4"  
+class="td11"><span 
+class="cmti-10">LOC</span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-4-1-5"  
+class="td11"><span 
+class="cmti-10">Best Fitness</span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-4-1-6"  
+class="td11"><span 
+class="cmti-10">% Discarded</span></td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-4-2-"><td  style="white-space:nowrap; text-align:left;" id="TBL-4-2-1"  
+class="td11">Insertion Sort       </td><td  style="white-space:nowrap; text-align:center;" id="TBL-4-2-2"  
+class="td11">    60      </td><td  style="white-space:nowrap; text-align:center;" id="TBL-4-2-3"  
+class="td11">        3            </td><td  style="white-space:nowrap; text-align:center;" id="TBL-4-2-4"  
+class="td11"> 13  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-4-2-5"  
+class="td11">    0.91      </td><td  style="white-space:nowrap; text-align:center;" id="TBL-4-2-6"  
+class="td11">    73.3      </td></tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-4-3-"><td  style="white-space:nowrap; text-align:left;" id="TBL-4-3-1"  
+class="td11">Bubblesort </td><td  style="white-space:nowrap; text-align:center;" id="TBL-4-3-2"  
+class="td11"> 62 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-4-3-3"  
+class="td11"> 5 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-4-3-4"  
+class="td11"> 13 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-4-3-5"  
+class="td11"> 0.55 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-4-3-6"  
+class="td11"> 71.4</td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-4-4-"><td  style="white-space:nowrap; text-align:left;" id="TBL-4-4-1"  
+class="td11">BubbleLoops        </td><td  style="white-space:nowrap; text-align:center;" id="TBL-4-4-2"  
+class="td11">    72      </td><td  style="white-space:nowrap; text-align:center;" id="TBL-4-4-3"  
+class="td11">        8            </td><td  style="white-space:nowrap; text-align:center;" id="TBL-4-4-4"  
+class="td11"> 14  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-4-4-5"  
+class="td11">    0.29      </td><td  style="white-space:nowrap; text-align:center;" id="TBL-4-4-6"  
+class="td11">    71.8      </td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-4-5-"><td  style="white-space:nowrap; text-align:left;" id="TBL-4-5-1"  
+class="td11">Selection Sort 2     </td><td  style="white-space:nowrap; text-align:center;" id="TBL-4-5-2"  
+class="td11">    72      </td><td  style="white-space:nowrap; text-align:center;" id="TBL-4-5-3"  
+class="td11">        1            </td><td  style="white-space:nowrap; text-align:center;" id="TBL-4-5-4"  
+class="td11"> 16  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-4-5-5"  
+class="td11">    0.99      </td><td  style="white-space:nowrap; text-align:center;" id="TBL-4-5-6"  
+class="td11">    70.9      </td></tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-4-6-"><td  style="white-space:nowrap; text-align:left;" id="TBL-4-6-1"  
+class="td11">Selection Sort </td><td  style="white-space:nowrap; text-align:center;" id="TBL-4-6-2"  
+class="td11"> 73 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-4-6-3"  
+class="td11"> 1 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-4-6-4"  
+class="td11"> 18 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-4-6-5"  
+class="td11"> 0.98 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-4-6-6"  
+class="td11"> 71.2</td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-4-7-"><td  style="white-space:nowrap; text-align:left;" id="TBL-4-7-1"  
+class="td11">Shell Sort             </td><td  style="white-space:nowrap; text-align:center;" id="TBL-4-7-2"  
+class="td11">    85      </td><td  style="white-space:nowrap; text-align:center;" id="TBL-4-7-3"  
+class="td11">        3            </td><td  style="white-space:nowrap; text-align:center;" id="TBL-4-7-4"  
+class="td11"> 23  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-4-7-5"  
+class="td11">    0.95      </td><td  style="white-space:nowrap; text-align:center;" id="TBL-4-7-6"  
+class="td11">    71.4      </td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-4-8-"><td  style="white-space:nowrap; text-align:left;" id="TBL-4-8-1"  
+class="td11">Radix Sort           </td><td  style="white-space:nowrap; text-align:center;" id="TBL-4-8-2"  
+class="td11">   100     </td><td  style="white-space:nowrap; text-align:center;" id="TBL-4-8-3"  
+class="td11">        3            </td><td  style="white-space:nowrap; text-align:center;" id="TBL-4-8-4"  
+class="td11"> 23  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-4-8-5"  
+class="td11">    0.99      </td><td  style="white-space:nowrap; text-align:center;" id="TBL-4-8-6"  
+class="td11">    80.5      </td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-4-9-"><td  style="white-space:nowrap; text-align:left;" id="TBL-4-9-1"  
+class="td11">Quick Sort           </td><td  style="white-space:nowrap; text-align:center;" id="TBL-4-9-2"  
+class="td11">   116     </td><td  style="white-space:nowrap; text-align:center;" id="TBL-4-9-3"  
+class="td11">        2            </td><td  style="white-space:nowrap; text-align:center;" id="TBL-4-9-4"  
+class="td11"> 31  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-4-9-5"  
+class="td11">    0.46      </td><td  style="white-space:nowrap; text-align:center;" id="TBL-4-9-6"  
+class="td11">    72.7      </td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-4-10-"><td  style="white-space:nowrap; text-align:left;" id="TBL-4-10-1"  
+class="td11">Cocktail Sort        </td><td  style="white-space:nowrap; text-align:center;" id="TBL-4-10-2"  
+class="td11">   126     </td><td  style="white-space:nowrap; text-align:center;" id="TBL-4-10-3"  
+class="td11">        1            </td><td  style="white-space:nowrap; text-align:center;" id="TBL-4-10-4"  
+class="td11"> 30  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-4-10-5"  
+class="td11">    0.85      </td><td  style="white-space:nowrap; text-align:center;" id="TBL-4-10-6"  
+class="td11">    73.7      </td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-4-11-"><td  style="white-space:nowrap; text-align:left;" id="TBL-4-11-1"  
+class="td11">Merge Sort           </td><td  style="white-space:nowrap; text-align:center;" id="TBL-4-11-2"  
+class="td11">   216     </td><td  style="white-space:nowrap; text-align:center;" id="TBL-4-11-3"  
+class="td11">        1            </td><td  style="white-space:nowrap; text-align:center;" id="TBL-4-11-4"  
+class="td11"> 51  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-4-11-5"  
+class="td11">    0.95      </td><td  style="white-space:nowrap; text-align:center;" id="TBL-4-11-6"  
+class="td11">    73.2      </td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-4-12-"><td  style="white-space:nowrap; text-align:left;" id="TBL-4-12-1"  
+class="td11">Heap Sort            </td><td  style="white-space:nowrap; text-align:center;" id="TBL-4-12-2"  
+class="td11">   246     </td><td  style="white-space:nowrap; text-align:center;" id="TBL-4-12-3"  
+class="td11">        2            </td><td  style="white-space:nowrap; text-align:center;" id="TBL-4-12-4"  
+class="td11"> 62  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-4-12-5"  
+class="td11">    0.59      </td><td  style="white-space:nowrap; text-align:center;" id="TBL-4-12-6"  
+class="td11">    71.1      </td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-4-13-"><td  style="white-space:nowrap; text-align:left;" id="TBL-4-13-1"  
+class="td11">Huffman Codebook</td><td  style="white-space:nowrap; text-align:center;" id="TBL-4-13-2"  
+class="td11">   411     </td><td  style="white-space:nowrap; text-align:center;" id="TBL-4-13-3"  
+class="td11">        5            </td><td  style="white-space:nowrap; text-align:center;" id="TBL-4-13-4"  
+class="td11"> 115 </td><td  style="white-space:nowrap; text-align:center;" id="TBL-4-13-5"  
+class="td11">    0.57      </td><td  style="white-space:nowrap; text-align:center;" id="TBL-4-13-6"  
+class="td11">    83.8      </td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-4-14-"><td  style="white-space:nowrap; text-align:left;" id="TBL-4-14-1"  
+class="td11">                </td></tr></table></div>
+<br /> <div class="caption" 
+><span class="id">Table&#x00A0;3: </span><span  
+class="content">Problem Improvement Overview.</span></div><!--tex4ht:label?: x1-150013 -->
+</div>
+                                                                  
+
+                                                                  
+</div><hr class="endfloat" />
+<!--l. 401--><p class="noindent" >An improved version of each program was found for all of the programs tested as can
+be seen in Table&#x00A0;<a 
+href="#x1-150013">3<!--tex4ht:ref: table:GPoptimisations --></a>. We can say that for these common algorithm implementations,
+GP can find a modification which reduces execution count.
+</p><!--l. 404--><p class="noindent" >A count of the AST nodes available for modification in each program shows the
+number of modification points which can be chosen during the application of GP.
+Lines of code are counted including those containing braces<span class="cite">&#x00A0;[<a 
+href="#Xwheeler2001sloccount">40</a>]</span>. The number of
+discarded programs is a ratio of the number of programs which do not make it into
+each generation over the total number of programs produced. Discarded programs
+include those which do not compile and intermediate programs generated where
+mutation and crossover are applied together. This is different to software mutational
+robustness<span class="cite">&#x00A0;[<a 
+href="#Xschulte2012software">32</a>]</span> which measures the number of modifications which leave a
+program&#8217;s behaviour unchanged. In our experiments, a minuscule number of
+programs, certainly less than 1%, show no behavioural change when modified.
+This may be due to programs likely containing only code which has some
+function.
+</p><!--l. 407--><p class="noindent" >The improvements found are in some cases reduction in number of iterations through
+a loop. The number of nodes which must change to produce an improved
+variant of the program is relatively small. In improved programs across these
+problems we see both the reuse of existing code and the modification of
+code at a fine level, justifying the use of the &#8220;genetic&#8221; as well as mutational
+approach of GP. To improve some programs, only a small number of edits
+are required. On others, it is necessary for a &#8220;block&#8221; of code to be reused
+and subsequently modified to produce a variant program. In either case, a
+strict or rigid definition of a building block may be overly restrictive. If a
+building block preserving GP extension were to be used, it would have to
+allow the modification of the contents of a building block after it has been
+defined.
+</p>
+<h3 class="sectionHead"><span class="titlemark">5   </span> <a 
+ id="x1-160005"></a>Conclusion</h3>
+<!--l. 412--><p class="noindent" >There is an opportunity for improvement in existing code as our results have shown.
+If improvements can be found in such relatively small algorithms, we may
+speculate that it is likely that there is a greater number of improvement
+opportunities in larger programs. We feel improvement opportunities exists in
+the wider body of existing code, especially considering that performance is
+not frequently recommended as of primary importance when developing
+software<span class="cite">&#x00A0;[<a 
+href="#Xknuth1974structured">13</a>]</span>.
+</p><!--l. 414--><p class="noindent" >Depending on the language that programs are to be evolved in, the tools for
+manipulating the language may not be readily available. One example is C which,
+due to the historical variety of versions implemented, can be difficult to parse in all
+instances<span class="cite">&#x00A0;[<a 
+href="#Xnecula2002cil">22</a>]</span>. As such, we feel it is important to currently focus on infrastructure to
+enable program improvement. locoGP can be used as a proof-of-concept in this
+regard.
+                                                                  
+
+                                                                  
+</p><!--l. 416--><p class="noindent" >Though relatively expensive, compiling Java source code for evaluation
+during evolution is manageable on modern hardware. There is
+ample room for improvement of locoGP itself both in terms of
+implementation<span class="footnote-mark"><a 
+href="#fn5x0" id="fn5x0-bk"><sup class="textsuperscript">5</sup></a></span><a 
+ id="x1-16001f5"></a>
+and in terms of the GP configuration used. Bytecodes could be weigthed differently
+as they are being counted as per their type or by their execution context.
+Performance could also be measured as wall-clock time to capture overhead
+introduced during I/O operations. Code exists in locoGP for measuring wall-clock
+time though was only used in early experiments as gathering consistent measures
+required repeat program execution which slowed the GP algorithm. The GP
+configuration used could be extended with tabu-search-like improvements<span class="cite">&#x00A0;[<a 
+href="#Xdiaz2008tabu">7</a>]</span> such as
+restricting the generation of equivalent programs<span class="cite">&#x00A0;[<a 
+href="#XLangdonRN1209">18</a>]</span> or caching previous evaluation
+results would reduce the cost of the system. A steady-state GP algorithm with
+different elitism or distribution models may also improve the operation of
+locoGP.
+</p><!--l. 420--><p class="noindent" >Additional sort and prefix code problems can be added to locoGP with minimal
+effort. Improving additional problems (other than sort and prefix codebook) requires
+writing a functionality measure and adding relevant test data. locoGP can be used
+as a comparison point between other systems which evolve programs at
+different represenations such as bytecode<span class="cite">&#x00A0;[<a 
+href="#Xorlov2011flight">25</a>]</span>, statement<span class="cite">&#x00A0;[<a 
+href="#XPetke:2013:SSBSE">28</a>,&#x00A0;<a 
+href="#Xwhite2011evolutionary">41</a>]</span> and/or
+patch<span class="cite">&#x00A0;[<a 
+href="#XDBLP:conf/gecco/ForrestNWG09">8</a>,&#x00A0;<a 
+href="#XLangdonRN1209">18</a>]</span>.
+</p><!--l. 423--><p class="noindent" >locoGP may be also used to observe issues in scaling automated
+software improvement to larger problems. A major theme in
+program improvement is the reuse of code, more specifically finding
+<span 
+class="cmti-10">where</span><span class="cite">&#x00A0;[<a 
+href="#XCody-Kenny:2013:SSBSE">6</a>,&#x00A0;<a 
+href="#XLangdonRN1209">18</a>,&#x00A0;<a 
+href="#Xweimer2009automatically">39</a>]</span><span class="footnote-mark"><a 
+href="#fn6x0" id="fn6x0-bk"><sup class="textsuperscript">6</sup></a></span><a 
+ id="x1-16002f6"></a>
+and with <span 
+class="cmti-10">what</span><span class="cite">&#x00A0;[<a 
+href="#XHarman:2014:Babel">10</a>,&#x00A0;<a 
+href="#Xle2012systematic">20</a>]</span> a program should be modified with.
+</p><!--l. 425--><p class="noindent" >
+</p>
+<h3 class="likesectionHead"><a 
+ id="x1-170005"></a>Acknowledgements</h3>
+<!--l. 426--><p class="noindent" >We thank the anonymous reviewer for suggesting the weighting of different bytecodes
+and I/O considerations. Edgar Galván López&#8217;s research is funded by an ELEVATE
+Fellowship, the Irish Research Council&#8217;s Career Development Fellowship
+co-funded by Marie Curie Actions. The second author would also like to
+thank the TAO group at INRIA Saclay &amp; LRI - Univ. Paris-Sud and CNRS,
+Orsay, France for hosting him during the outgoing phase of the ELEVATE
+Fellowship.
+</p><!--l. 1--><p class="noindent" >
+</p>
+<h3 class="likesectionHead"><a 
+ id="x1-180005"></a>References</h3>
+<!--l. 1--><p class="noindent" >
+                                                                  
+
+                                                                  
+    </p><div class="thebibliography">
+    <p class="bibitem" ><span class="biblabel">
+  [1]<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span><a 
+ id="Xagapitos2007evolving"></a><span 
+class="cmcsc-10">A<span 
+class="small-caps">g</span><span 
+class="small-caps">a</span><span 
+class="small-caps">p</span><span 
+class="small-caps">i</span><span 
+class="small-caps">t</span><span 
+class="small-caps">o</span><span 
+class="small-caps">s</span>, A., <span 
+class="small-caps">a</span><span 
+class="small-caps">n</span><span 
+class="small-caps">d</span> L<span 
+class="small-caps">u</span><span 
+class="small-caps">c</span><span 
+class="small-caps">a</span><span 
+class="small-caps">s</span>, S.  </span>Evolving modular recursive sorting
+    algorithms. <span 
+class="cmti-10">Genetic Programming </span>(2007), 301&#8211;310.
+    </p>
+    <p class="bibitem" ><span class="biblabel">
+  [2]<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span><a 
+ id="Xarcuri2008multi"></a><span 
+class="cmcsc-10">A<span 
+class="small-caps">r</span><span 
+class="small-caps">c</span><span 
+class="small-caps">u</span><span 
+class="small-caps">r</span><span 
+class="small-caps">i</span>, A., W<span 
+class="small-caps">h</span><span 
+class="small-caps">i</span><span 
+class="small-caps">t</span><span 
+class="small-caps">e</span>, D., C<span 
+class="small-caps">l</span><span 
+class="small-caps">a</span><span 
+class="small-caps">r</span><span 
+class="small-caps">k</span>, J., <span 
+class="small-caps">a</span><span 
+class="small-caps">n</span><span 
+class="small-caps">d</span> Y<span 
+class="small-caps">a</span><span 
+class="small-caps">o</span>, X.  </span>Multi-objective
+    improvement of software using co-evolution and smart seeding.  <span 
+class="cmti-10">Simulated</span>
+    <span 
+class="cmti-10">Evolution and Learning </span>(2008), 61&#8211;70.
+    </p>
+    <p class="bibitem" ><span class="biblabel">
+  [3]<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span><a 
+ id="Xcastle2012evolving"></a><span 
+class="cmcsc-10">C<span 
+class="small-caps">a</span><span 
+class="small-caps">s</span><span 
+class="small-caps">t</span><span 
+class="small-caps">l</span><span 
+class="small-caps">e</span>, T., <span 
+class="small-caps">a</span><span 
+class="small-caps">n</span><span 
+class="small-caps">d</span> J<span 
+class="small-caps">o</span><span 
+class="small-caps">h</span><span 
+class="small-caps">n</span><span 
+class="small-caps">s</span><span 
+class="small-caps">o</span><span 
+class="small-caps">n</span>, C.</span><span 
+class="cmcsc-10">&#x00A0;G.  </span>Evolving high-level imperative
+    program  trees  with  strongly  formed  genetic  programming.   In  <span 
+class="cmti-10">Genetic</span>
+    <span 
+class="cmti-10">Programming</span>. Springer, 2012, pp.&#x00A0;1&#8211;12.
+    </p>
+    <p class="bibitem" ><span class="biblabel">
+  [4]<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span><a 
+ id="Xchennupati2015automatic"></a><span 
+class="cmcsc-10">C<span 
+class="small-caps">h</span><span 
+class="small-caps">e</span><span 
+class="small-caps">n</span><span 
+class="small-caps">n</span><span 
+class="small-caps">u</span><span 
+class="small-caps">p</span><span 
+class="small-caps">a</span><span 
+class="small-caps">t</span><span 
+class="small-caps">i</span>,  G.,  A<span 
+class="small-caps">z</span><span 
+class="small-caps">a</span><span 
+class="small-caps">d</span>,  R.  M.</span><span 
+class="cmcsc-10">&#x00A0;A.,  <span 
+class="small-caps">a</span><span 
+class="small-caps">n</span><span 
+class="small-caps">d</span>  R<span 
+class="small-caps">y</span><span 
+class="small-caps">a</span><span 
+class="small-caps">n</span>,  C.   </span>Automatic
+    evolution of parallel sorting programs on multi-cores.  In <span 
+class="cmti-10">Applications of</span>
+    <span 
+class="cmti-10">Evolutionary Computation</span>. Springer, 2015, pp.&#x00A0;706&#8211;717.
+    </p>
+    <p class="bibitem" ><span class="biblabel">
+  [5]<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span><a 
+ id="Xcinneide2001automated"></a><span 
+class="cmcsc-10">C<span 
+class="small-caps">i</span><span 
+class="small-caps">n</span><span 
+class="small-caps">n</span></span><span 
+class="cmcsc-10">é<span 
+class="small-caps">i</span><span 
+class="small-caps">d</span><span 
+class="small-caps">e</span>,  M.</span><span 
+class="cmcsc-10">&#x00A0;O.    </span><span 
+class="cmti-10">Automated  application  of  design  patterns:  a</span>
+    <span 
+class="cmti-10">refactoring approach</span>. PhD thesis, Trinity College Dublin., 2001.
+    </p>
+    <p class="bibitem" ><span class="biblabel">
+  [6]<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span><a 
+ id="XCody-Kenny:2013:SSBSE"></a><span 
+class="cmcsc-10">C<span 
+class="small-caps">o</span><span 
+class="small-caps">d</span><span 
+class="small-caps">y</span>-K<span 
+class="small-caps">e</span><span 
+class="small-caps">n</span><span 
+class="small-caps">n</span><span 
+class="small-caps">y</span>,  B.,  <span 
+class="small-caps">a</span><span 
+class="small-caps">n</span><span 
+class="small-caps">d</span>  B<span 
+class="small-caps">a</span><span 
+class="small-caps">r</span><span 
+class="small-caps">r</span><span 
+class="small-caps">e</span><span 
+class="small-caps">t</span><span 
+class="small-caps">t</span>,  S.   </span>The  emergence  of  useful
+    bias in self-focusing genetic programming for software optimisation.   In
+    <span 
+class="cmti-10">Symposium on Search-Based Software Engineering </span>(Leningrad, Aug. 24-26
+    2013), G.&#x00A0;Fraser, Ed. Graduate Student Track.
+    </p>
+    <p class="bibitem" ><span class="biblabel">
+  [7]<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span><a 
+ id="Xdiaz2008tabu"></a><span 
+class="cmcsc-10">D</span><span 
+class="cmcsc-10">í<span 
+class="small-caps">a</span><span 
+class="small-caps">z</span>, E., T<span 
+class="small-caps">u</span><span 
+class="small-caps">y</span><span 
+class="small-caps">a</span>, J., B<span 
+class="small-caps">l</span><span 
+class="small-caps">a</span><span 
+class="small-caps">n</span><span 
+class="small-caps">c</span><span 
+class="small-caps">o</span>, R., <span 
+class="small-caps">a</span><span 
+class="small-caps">n</span><span 
+class="small-caps">d</span> D<span 
+class="small-caps">o</span><span 
+class="small-caps">l</span><span 
+class="small-caps">a</span><span 
+class="small-caps">d</span><span 
+class="small-caps">o</span>, J.</span><span 
+class="cmcsc-10">&#x00A0;J.  </span>A  tabu
+    search algorithm for structural software testing.  <span 
+class="cmti-10">Computers &amp; Operations</span>
+    <span 
+class="cmti-10">Research 35</span>, 10 (2008), 3052&#8211;3072.
+    </p>
+    <p class="bibitem" ><span class="biblabel">
+  [8]<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span><a 
+ id="XDBLP:conf/gecco/ForrestNWG09"></a><span 
+class="cmcsc-10">F<span 
+class="small-caps">o</span><span 
+class="small-caps">r</span><span 
+class="small-caps">r</span><span 
+class="small-caps">e</span><span 
+class="small-caps">s</span><span 
+class="small-caps">t</span>, S., N<span 
+class="small-caps">g</span><span 
+class="small-caps">u</span><span 
+class="small-caps">y</span><span 
+class="small-caps">e</span><span 
+class="small-caps">n</span>, T., W<span 
+class="small-caps">e</span><span 
+class="small-caps">i</span><span 
+class="small-caps">m</span><span 
+class="small-caps">e</span><span 
+class="small-caps">r</span>, W., <span 
+class="small-caps">a</span><span 
+class="small-caps">n</span><span 
+class="small-caps">d</span> G<span 
+class="small-caps">o</span><span 
+class="small-caps">u</span><span 
+class="small-caps">e</span><span 
+class="small-caps">s</span>, C.</span><span 
+class="cmcsc-10">&#x00A0;L.  </span>A
+    genetic programming approach to automated software repair.  In <span 
+class="cmti-10">GECCO</span>
+    (2009), F.&#x00A0;Rothlauf, Ed., ACM, pp.&#x00A0;947&#8211;954.
+                                                                  
+
+                                                                  
+    </p>
+    <p class="bibitem" ><span class="biblabel">
+  [9]<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span><a 
+ id="Xfukunaga1998genome"></a><span 
+class="cmcsc-10">F<span 
+class="small-caps">u</span><span 
+class="small-caps">k</span><span 
+class="small-caps">u</span><span 
+class="small-caps">n</span><span 
+class="small-caps">a</span><span 
+class="small-caps">g</span><span 
+class="small-caps">a</span>, A., S<span 
+class="small-caps">t</span><span 
+class="small-caps">e</span><span 
+class="small-caps">c</span><span 
+class="small-caps">h</span><span 
+class="small-caps">e</span><span 
+class="small-caps">r</span><span 
+class="small-caps">t</span>, A., <span 
+class="small-caps">a</span><span 
+class="small-caps">n</span><span 
+class="small-caps">d</span> M<span 
+class="small-caps">u</span><span 
+class="small-caps">t</span><span 
+class="small-caps">z</span>, D.  </span>A genome compiler
+    for high performance genetic programming. <span 
+class="cmti-10">Genetic Programming </span>(1998),
+    86&#8211;94.
+    </p>
+    <p class="bibitem" ><span class="biblabel">
+ [10]<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span><a 
+ id="XHarman:2014:Babel"></a><span 
+class="cmcsc-10">H<span 
+class="small-caps">a</span><span 
+class="small-caps">r</span><span 
+class="small-caps">m</span><span 
+class="small-caps">a</span><span 
+class="small-caps">n</span>, M., J<span 
+class="small-caps">i</span><span 
+class="small-caps">a</span>, Y., <span 
+class="small-caps">a</span><span 
+class="small-caps">n</span><span 
+class="small-caps">d</span> L<span 
+class="small-caps">a</span><span 
+class="small-caps">n</span><span 
+class="small-caps">g</span><span 
+class="small-caps">d</span><span 
+class="small-caps">o</span><span 
+class="small-caps">n</span>, W.</span><span 
+class="cmcsc-10">&#x00A0;B.  </span>Babel pidgin: SBSE
+    can grow and graft entirely new functionality into a real world system. In
+    <span 
+class="cmti-10">SSBSE Challenge Track </span>(Fortaleza, Brazil, 26-29 Aug. 2014), M.&#x00A0;Barros,
+    Ed. Accepted.
+    </p>
+    <p class="bibitem" ><span class="biblabel">
+ [11]<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span><a 
+ id="Xhuffman1952method"></a><span 
+class="cmcsc-10">H<span 
+class="small-caps">u</span><span 
+class="small-caps">f</span><span 
+class="small-caps">f</span><span 
+class="small-caps">m</span><span 
+class="small-caps">a</span><span 
+class="small-caps">n</span>, D.</span><span 
+class="cmcsc-10">&#x00A0;A., <span 
+class="small-caps">e</span><span 
+class="small-caps">t</span></span><span 
+class="cmcsc-10">&#x00A0;<span 
+class="small-caps">a</span><span 
+class="small-caps">l</span>. </span>A method for the construction of minimum
+    redundancy codes. <span 
+class="cmti-10">Proceedings of the IRE 40</span>, 9 (1952), 1098&#8211;1101.
+    </p>
+    <p class="bibitem" ><span class="biblabel">
+ [12]<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span><a 
+ id="Xkinnear1993evolving"></a><span 
+class="cmcsc-10">K<span 
+class="small-caps">i</span><span 
+class="small-caps">n</span><span 
+class="small-caps">n</span><span 
+class="small-caps">e</span><span 
+class="small-caps">a</span><span 
+class="small-caps">r</span></span><span 
+class="cmcsc-10">&#x00A0;J<span 
+class="small-caps">r</span>, K. </span>Evolving a sort: Lessons in genetic programming. In
+    <span 
+class="cmti-10">Neural Networks, 1993., IEEE International Conference on </span>(1993), IEEE,
+    pp.&#x00A0;881&#8211;888.
+    </p>
+    <p class="bibitem" ><span class="biblabel">
+ [13]<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span><a 
+ id="Xknuth1974structured"></a><span 
+class="cmcsc-10">K<span 
+class="small-caps">n</span><span 
+class="small-caps">u</span><span 
+class="small-caps">t</span><span 
+class="small-caps">h</span>, D.</span><span 
+class="cmcsc-10">&#x00A0;E. </span>Structured programming with go to statements. <span 
+class="cmti-10">ACM</span>
+    <span 
+class="cmti-10">Computing Surveys (CSUR) 6</span>, 4 (1974), 261&#8211;301.
+    </p>
+    <p class="bibitem" ><span class="biblabel">
+ [14]<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span><a 
+ id="XKoza1992genetic"></a><span 
+class="cmcsc-10">K<span 
+class="small-caps">o</span><span 
+class="small-caps">z</span><span 
+class="small-caps">a</span>, J.</span><span 
+class="cmcsc-10">&#x00A0;R. </span><span 
+class="cmti-10">Genetic programming: on the programming of computers</span>
+    <span 
+class="cmti-10">by means of natural selection</span>, vol.&#x00A0;1. MIT press, 1992.
+    </p>
+    <p class="bibitem" ><span class="biblabel">
+ [15]<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span><a 
+ id="Xkuperberg2008a"></a><span 
+class="cmcsc-10">K<span 
+class="small-caps">u</span><span 
+class="small-caps">p</span><span 
+class="small-caps">e</span><span 
+class="small-caps">r</span><span 
+class="small-caps">b</span><span 
+class="small-caps">e</span><span 
+class="small-caps">r</span><span 
+class="small-caps">g</span>, M., K<span 
+class="small-caps">r</span><span 
+class="small-caps">o</span><span 
+class="small-caps">g</span><span 
+class="small-caps">m</span><span 
+class="small-caps">a</span><span 
+class="small-caps">n</span><span 
+class="small-caps">n</span>, M., <span 
+class="small-caps">a</span><span 
+class="small-caps">n</span><span 
+class="small-caps">d</span> R<span 
+class="small-caps">e</span><span 
+class="small-caps">u</span><span 
+class="small-caps">s</span><span 
+class="small-caps">s</span><span 
+class="small-caps">n</span><span 
+class="small-caps">e</span><span 
+class="small-caps">r</span>, R.  </span>ByCounter:
+    Portable   Runtime   Counting   of   Bytecode   Instructions   and   Method
+    Invocations.     In  <span 
+class="cmti-10">Proceedings  of  the  3rd  International  Workshop  on</span>
+    <span 
+class="cmti-10">Bytecode Semantics, Verification, Analysis and Transformation , Budapest,</span>
+    <span 
+class="cmti-10">Hungary, 5th April 2008 (ETAPS 2008, 11th European Joint Conferences</span>
+    <span 
+class="cmti-10">on Theory and Practice of Software) </span>(2008).
+    </p>
+                                                                  
+
+                                                                  
+    <p class="bibitem" ><span class="biblabel">
+ [16]<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span><a 
+ id="Xlambert2008platform"></a><span 
+class="cmcsc-10">L<span 
+class="small-caps">a</span><span 
+class="small-caps">m</span><span 
+class="small-caps">b</span><span 
+class="small-caps">e</span><span 
+class="small-caps">r</span><span 
+class="small-caps">t</span>, J.</span><span 
+class="cmcsc-10">&#x00A0;M., <span 
+class="small-caps">a</span><span 
+class="small-caps">n</span><span 
+class="small-caps">d</span> P<span 
+class="small-caps">o</span><span 
+class="small-caps">w</span><span 
+class="small-caps">e</span><span 
+class="small-caps">r</span>, J.</span><span 
+class="cmcsc-10">&#x00A0;F. </span>Platform independent timing of
+    java virtual machine bytecode instructions. <span 
+class="cmti-10">Electronic Notes in Theoretical</span>
+    <span 
+class="cmti-10">Computer Science 220</span>, 3 (2008), 97&#8211;113.
+    </p>
+    <p class="bibitem" ><span class="biblabel">
+ [17]<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span><a 
+ id="Xlangdonperformance"></a><span 
+class="cmcsc-10">L<span 
+class="small-caps">a</span><span 
+class="small-caps">n</span><span 
+class="small-caps">g</span><span 
+class="small-caps">d</span><span 
+class="small-caps">o</span><span 
+class="small-caps">n</span>, W. </span>Performance of genetic programming optimised bowtie2
+    on genome comparison and analytic testing (gcat) benchmarks.
+    </p>
+    <p class="bibitem" ><span class="biblabel">
+ [18]<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span><a 
+ id="XLangdonRN1209"></a><span 
+class="cmcsc-10">L<span 
+class="small-caps">a</span><span 
+class="small-caps">n</span><span 
+class="small-caps">g</span><span 
+class="small-caps">d</span><span 
+class="small-caps">o</span><span 
+class="small-caps">n</span>, W.</span><span 
+class="cmcsc-10">&#x00A0;B., <span 
+class="small-caps">a</span><span 
+class="small-caps">n</span><span 
+class="small-caps">d</span> H<span 
+class="small-caps">a</span><span 
+class="small-caps">r</span><span 
+class="small-caps">m</span><span 
+class="small-caps">a</span><span 
+class="small-caps">n</span>, M.  </span>Genetically improving 50000
+    lines of C++. Research Note RN/12/09, Department of Computer Science,
+    University College London, Gower Street, London WC1E 6BT, UK, 19
+    Sept. 2012.
+    </p>
+    <p class="bibitem" ><span class="biblabel">
+ [19]<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span><a 
+ id="Xlangdon2013optimising"></a><span 
+class="cmcsc-10">L<span 
+class="small-caps">a</span><span 
+class="small-caps">n</span><span 
+class="small-caps">g</span><span 
+class="small-caps">d</span><span 
+class="small-caps">o</span><span 
+class="small-caps">n</span>,   W.</span><span 
+class="cmcsc-10">&#x00A0;B.,   <span 
+class="small-caps">a</span><span 
+class="small-caps">n</span><span 
+class="small-caps">d</span>   H<span 
+class="small-caps">a</span><span 
+class="small-caps">r</span><span 
+class="small-caps">m</span><span 
+class="small-caps">a</span><span 
+class="small-caps">n</span>,   M.      </span>Optimising   existing
+    software with genetic programming.  <span 
+class="cmti-10">IEEE Transactions on Evolutionary</span>
+    <span 
+class="cmti-10">Computation </span>(2013).
+    </p>
+    <p class="bibitem" ><span class="biblabel">
+ [20]<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span><a 
+ id="Xle2012systematic"></a><span 
+class="cmcsc-10">L<span 
+class="small-caps">e</span></span><span 
+class="cmcsc-10">&#x00A0;G<span 
+class="small-caps">o</span><span 
+class="small-caps">u</span><span 
+class="small-caps">e</span><span 
+class="small-caps">s</span>, C., D<span 
+class="small-caps">e</span><span 
+class="small-caps">w</span><span 
+class="small-caps">e</span><span 
+class="small-caps">y</span>-V<span 
+class="small-caps">o</span><span 
+class="small-caps">g</span><span 
+class="small-caps">t</span>, M., F<span 
+class="small-caps">o</span><span 
+class="small-caps">r</span><span 
+class="small-caps">r</span><span 
+class="small-caps">e</span><span 
+class="small-caps">s</span><span 
+class="small-caps">t</span>, S., <span 
+class="small-caps">a</span><span 
+class="small-caps">n</span><span 
+class="small-caps">d</span> W<span 
+class="small-caps">e</span><span 
+class="small-caps">i</span><span 
+class="small-caps">m</span><span 
+class="small-caps">e</span><span 
+class="small-caps">r</span>, W.</span>
+    A systematic study of automated program repair: Fixing 55 out of 105
+    bugs for $8 each. In <span 
+class="cmti-10">Software Engineering (ICSE), 2012 34th International</span>
+    <span 
+class="cmti-10">Conference on </span>(2012), IEEE, pp.&#x00A0;3&#8211;13.
+    </p>
+    <p class="bibitem" ><span class="biblabel">
+ [21]<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span><a 
+ id="Xle2012representations"></a><span 
+class="cmcsc-10">L<span 
+class="small-caps">e</span></span><span 
+class="cmcsc-10">&#x00A0;G<span 
+class="small-caps">o</span><span 
+class="small-caps">u</span><span 
+class="small-caps">e</span><span 
+class="small-caps">s</span>, C., W<span 
+class="small-caps">e</span><span 
+class="small-caps">i</span><span 
+class="small-caps">m</span><span 
+class="small-caps">e</span><span 
+class="small-caps">r</span>, W., <span 
+class="small-caps">a</span><span 
+class="small-caps">n</span><span 
+class="small-caps">d</span> F<span 
+class="small-caps">o</span><span 
+class="small-caps">r</span><span 
+class="small-caps">r</span><span 
+class="small-caps">e</span><span 
+class="small-caps">s</span><span 
+class="small-caps">t</span>, S.  </span>Representations
+    and operators for improving evolutionary software repair.  In <span 
+class="cmti-10">Proceedings</span>
+    <span 
+class="cmti-10">of  the  fourteenth  international  conference  on  Genetic  and  evolutionary</span>
+    <span 
+class="cmti-10">computation conference </span>(2012), ACM, pp.&#x00A0;959&#8211;966.
+    </p>
+    <p class="bibitem" ><span class="biblabel">
+ [22]<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span><a 
+ id="Xnecula2002cil"></a><span 
+class="cmcsc-10">N<span 
+class="small-caps">e</span><span 
+class="small-caps">c</span><span 
+class="small-caps">u</span><span 
+class="small-caps">l</span><span 
+class="small-caps">a</span>, G.</span><span 
+class="cmcsc-10">&#x00A0;C., M<span 
+class="small-caps">c</span>P<span 
+class="small-caps">e</span><span 
+class="small-caps">a</span><span 
+class="small-caps">k</span>, S., R<span 
+class="small-caps">a</span><span 
+class="small-caps">h</span><span 
+class="small-caps">u</span><span 
+class="small-caps">l</span>, S.</span><span 
+class="cmcsc-10">&#x00A0;P., <span 
+class="small-caps">a</span><span 
+class="small-caps">n</span><span 
+class="small-caps">d</span> W<span 
+class="small-caps">e</span><span 
+class="small-caps">i</span><span 
+class="small-caps">m</span><span 
+class="small-caps">e</span><span 
+class="small-caps">r</span>, W.</span>
+    Cil: Intermediate language and tools for analysis and transformation of c
+    programs. In <span 
+class="cmti-10">Compiler Construction</span>. Springer, 2002, pp.&#x00A0;213&#8211;228.
+    </p>
+                                                                  
+
+                                                                  
+    <p class="bibitem" ><span class="biblabel">
+ [23]<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span><a 
+ id="Xo2008search"></a><span 
+class="cmcsc-10">O&#8217;K<span 
+class="small-caps">e</span><span 
+class="small-caps">e</span><span 
+class="small-caps">f</span><span 
+class="small-caps">f</span><span 
+class="small-caps">e</span>,  M.,  <span 
+class="small-caps">a</span><span 
+class="small-caps">n</span><span 
+class="small-caps">d</span>  C<span 
+class="small-caps">i</span><span 
+class="small-caps">n</span><span 
+class="small-caps">n</span></span><span 
+class="cmcsc-10">é<span 
+class="small-caps">i</span><span 
+class="small-caps">d</span><span 
+class="small-caps">e</span>,  M.   </span>Search-based  refactoring:  an
+    empirical study. <span 
+class="cmti-10">Journal of Software Maintenance and Evolution: Research</span>
+    <span 
+class="cmti-10">and Practice 20</span>, 5 (2008), 345&#8211;364.
+    </p>
+    <p class="bibitem" ><span class="biblabel">
+ [24]<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span><a 
+ id="Xo2014experiments"></a><span 
+class="cmcsc-10">O&#8217;N<span 
+class="small-caps">e</span><span 
+class="small-caps">i</span><span 
+class="small-caps">l</span><span 
+class="small-caps">l</span>, M., N<span 
+class="small-caps">i</span><span 
+class="small-caps">c</span><span 
+class="small-caps">o</span><span 
+class="small-caps">l</span><span 
+class="small-caps">a</span><span 
+class="small-caps">u</span>, M., <span 
+class="small-caps">a</span><span 
+class="small-caps">n</span><span 
+class="small-caps">d</span> A<span 
+class="small-caps">g</span><span 
+class="small-caps">a</span><span 
+class="small-caps">p</span><span 
+class="small-caps">i</span><span 
+class="small-caps">t</span><span 
+class="small-caps">o</span><span 
+class="small-caps">s</span>, A.   </span>Experiments  in
+    program synthesis with grammatical evolution: A focus on integer sorting.
+    In  <span 
+class="cmti-10">Evolutionary  Computation  (CEC),  2014  IEEE  Congress  on  </span>(2014),
+    IEEE, pp.&#x00A0;1504&#8211;1511.
+    </p>
+    <p class="bibitem" ><span class="biblabel">
+ [25]<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span><a 
+ id="Xorlov2011flight"></a><span 
+class="cmcsc-10">O<span 
+class="small-caps">r</span><span 
+class="small-caps">l</span><span 
+class="small-caps">o</span><span 
+class="small-caps">v</span>, M., <span 
+class="small-caps">a</span><span 
+class="small-caps">n</span><span 
+class="small-caps">d</span> S<span 
+class="small-caps">i</span><span 
+class="small-caps">p</span><span 
+class="small-caps">p</span><span 
+class="small-caps">e</span><span 
+class="small-caps">r</span>, M.  </span>Flight of the finch through the java
+    wilderness. <span 
+class="cmti-10">Evolutionary Computation, IEEE Transactions on 15</span>, 2 (2011),
+    166&#8211;182.
+    </p>
+    <p class="bibitem" ><span class="biblabel">
+ [26]<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span><a 
+ id="Xpetke2014using"></a><span 
+class="cmcsc-10">P<span 
+class="small-caps">e</span><span 
+class="small-caps">t</span><span 
+class="small-caps">k</span><span 
+class="small-caps">e</span>,  J.,  H<span 
+class="small-caps">a</span><span 
+class="small-caps">r</span><span 
+class="small-caps">m</span><span 
+class="small-caps">a</span><span 
+class="small-caps">n</span>,  M.,  L<span 
+class="small-caps">a</span><span 
+class="small-caps">n</span><span 
+class="small-caps">g</span><span 
+class="small-caps">d</span><span 
+class="small-caps">o</span><span 
+class="small-caps">n</span>,  W.</span><span 
+class="cmcsc-10">&#x00A0;B.,  <span 
+class="small-caps">a</span><span 
+class="small-caps">n</span><span 
+class="small-caps">d</span>  W<span 
+class="small-caps">e</span><span 
+class="small-caps">i</span><span 
+class="small-caps">m</span><span 
+class="small-caps">e</span><span 
+class="small-caps">r</span>,  W.</span>
+    Using genetic improvement &amp; code transplants to specialise a c++ program
+    to a problem class. In <span 
+class="cmti-10">17th European Conference on Genetic Programming</span>
+    <span 
+class="cmti-10">(EuroGP), Granada, Spain </span>(2014).
+    </p>
+    <p class="bibitem" ><span class="biblabel">
+ [27]<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span><a 
+ id="Xpetke2013applying"></a><span 
+class="cmcsc-10">P<span 
+class="small-caps">e</span><span 
+class="small-caps">t</span><span 
+class="small-caps">k</span><span 
+class="small-caps">e</span>, J., L<span 
+class="small-caps">a</span><span 
+class="small-caps">n</span><span 
+class="small-caps">g</span><span 
+class="small-caps">d</span><span 
+class="small-caps">o</span><span 
+class="small-caps">n</span>, W.</span><span 
+class="cmcsc-10">&#x00A0;B., <span 
+class="small-caps">a</span><span 
+class="small-caps">n</span><span 
+class="small-caps">d</span> H<span 
+class="small-caps">a</span><span 
+class="small-caps">r</span><span 
+class="small-caps">m</span><span 
+class="small-caps">a</span><span 
+class="small-caps">n</span>, M.  </span>Applying genetic
+    improvement to minisat. In <span 
+class="cmti-10">Search Based Software Engineering</span>. Springer,
+    2013, pp.&#x00A0;257&#8211;262.
+    </p>
+    <p class="bibitem" ><span class="biblabel">
+ [28]<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span><a 
+ id="XPetke:2013:SSBSE"></a><span 
+class="cmcsc-10">P<span 
+class="small-caps">e</span><span 
+class="small-caps">t</span><span 
+class="small-caps">k</span><span 
+class="small-caps">e</span>, J., L<span 
+class="small-caps">a</span><span 
+class="small-caps">n</span><span 
+class="small-caps">g</span><span 
+class="small-caps">d</span><span 
+class="small-caps">o</span><span 
+class="small-caps">n</span>, W.</span><span 
+class="cmcsc-10">&#x00A0;B., <span 
+class="small-caps">a</span><span 
+class="small-caps">n</span><span 
+class="small-caps">d</span> H<span 
+class="small-caps">a</span><span 
+class="small-caps">r</span><span 
+class="small-caps">m</span><span 
+class="small-caps">a</span><span 
+class="small-caps">n</span>, M.  </span>Applying genetic
+    improvement  to  MiniSAT.    In  <span 
+class="cmti-10">Symposium  on  Search-Based  Software</span>
+    <span 
+class="cmti-10">Engineering </span>(Leningrad, Aug. 24-26 2013), G.&#x00A0;Fraser, Ed. Short Papers.
+    </p>
+    <p class="bibitem" ><span class="biblabel">
+ [29]<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span><a 
+ id="Xpoli04:_tinyg"></a><span 
+class="cmcsc-10">P<span 
+class="small-caps">o</span><span 
+class="small-caps">l</span><span 
+class="small-caps">i</span>,                 R.                                             </span>TinyGP.
+    <a 
+href="http://cswww.essex.ac.uk/staff/rpoli/TinyGP/" class="url" ><span 
+class="cmtt-10">http://cswww.essex.ac.uk/staff/rpoli/TinyGP/</span></a>, 2004.
+    </p>
+    <p class="bibitem" ><span class="biblabel">
+ [30]<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span><a 
+ id="Xconor2000automatic"></a><span 
+class="cmcsc-10">R<span 
+class="small-caps">y</span><span 
+class="small-caps">a</span><span 
+class="small-caps">n</span>,  C.    </span><span 
+class="cmti-10">Automatic  Re-engineering  of  Software  Using  Genetic</span>
+    <span 
+class="cmti-10">Programming</span>,   vol.&#x00A0;2   of   <span 
+class="cmti-10">Genetic  Programming</span>.      Kluwer   Academic
+    Publishers, 1 Nov. 1999.
+                                                                  
+
+                                                                  
+    </p>
+    <p class="bibitem" ><span class="biblabel">
+ [31]<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span><a 
+ id="Xryan1997paragen"></a><span 
+class="cmcsc-10">R<span 
+class="small-caps">y</span><span 
+class="small-caps">a</span><span 
+class="small-caps">n</span>, C., <span 
+class="small-caps">a</span><span 
+class="small-caps">n</span><span 
+class="small-caps">d</span> W<span 
+class="small-caps">a</span><span 
+class="small-caps">l</span><span 
+class="small-caps">s</span><span 
+class="small-caps">h</span>, P. </span>Paragen ii: evolving parallel transformation
+    rules.  In <span 
+class="cmti-10">Computational Intelligence Theory and Applications</span>. Springer,
+    1997, pp.&#x00A0;573&#8211;573.
+    </p>
+    <p class="bibitem" ><span class="biblabel">
+ [32]<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span><a 
+ id="Xschulte2012software"></a><span 
+class="cmcsc-10">S<span 
+class="small-caps">c</span><span 
+class="small-caps">h</span><span 
+class="small-caps">u</span><span 
+class="small-caps">l</span><span 
+class="small-caps">t</span><span 
+class="small-caps">e</span>, E., F<span 
+class="small-caps">r</span><span 
+class="small-caps">y</span>, Z.</span><span 
+class="cmcsc-10">&#x00A0;P., F<span 
+class="small-caps">a</span><span 
+class="small-caps">s</span><span 
+class="small-caps">t</span>, E., W<span 
+class="small-caps">e</span><span 
+class="small-caps">i</span><span 
+class="small-caps">m</span><span 
+class="small-caps">e</span><span 
+class="small-caps">r</span>, W., <span 
+class="small-caps">a</span><span 
+class="small-caps">n</span><span 
+class="small-caps">d</span> F<span 
+class="small-caps">o</span><span 
+class="small-caps">r</span><span 
+class="small-caps">r</span><span 
+class="small-caps">e</span><span 
+class="small-caps">s</span><span 
+class="small-caps">t</span>, S.</span>
+    Software mutational robustness. <span 
+class="cmti-10">arXiv preprint arXiv:1204.4224 </span>(2012).
+    </p>
+    <p class="bibitem" ><span class="biblabel">
+ [33]<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span><a 
+ id="Xsimons2011interactive"></a><span 
+class="cmcsc-10">S<span 
+class="small-caps">i</span><span 
+class="small-caps">m</span><span 
+class="small-caps">o</span><span 
+class="small-caps">n</span><span 
+class="small-caps">s</span>,  C.   </span>Interactive  evolutionary  computing  in  early  lifecycle
+    software engineering design.
+    </p>
+    <p class="bibitem" ><span class="biblabel">
+ [34]<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span><a 
+ id="Xsoule1998effects"></a><span 
+class="cmcsc-10">S<span 
+class="small-caps">o</span><span 
+class="small-caps">u</span><span 
+class="small-caps">l</span><span 
+class="small-caps">e</span>,  T.,  <span 
+class="small-caps">a</span><span 
+class="small-caps">n</span><span 
+class="small-caps">d</span>  F<span 
+class="small-caps">o</span><span 
+class="small-caps">s</span><span 
+class="small-caps">t</span><span 
+class="small-caps">e</span><span 
+class="small-caps">r</span>,  J.</span><span 
+class="cmcsc-10">&#x00A0;A.    </span>Effects  of  code  growth  and
+    parsimony pressure on populations in genetic programming.  <span 
+class="cmti-10">Evolutionary</span>
+    <span 
+class="cmti-10">Computation 6</span>, 4 (1998), 293&#8211;309.
+    </p>
+    <p class="bibitem" ><span class="biblabel">
+ [35]<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span><a 
+ id="Xspector2001autoconstructive"></a><span 
+class="cmcsc-10">S<span 
+class="small-caps">p</span><span 
+class="small-caps">e</span><span 
+class="small-caps">c</span><span 
+class="small-caps">t</span><span 
+class="small-caps">o</span><span 
+class="small-caps">r</span>, L. </span>Autoconstructive evolution: Push, pushgp, and pushpop.
+    In <span 
+class="cmti-10">Proceedings of the Genetic and Evolutionary Computation Conference</span>
+    <span 
+class="cmti-10">(GECCO-2001) </span>(2001), pp.&#x00A0;137&#8211;146.
+    </p>
+    <p class="bibitem" ><span class="biblabel">
+ [36]<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span><a 
+ id="Xrosettacode"></a><span 
+class="cmcsc-10">V<span 
+class="small-caps">a</span><span 
+class="small-caps">r</span><span 
+class="small-caps">i</span><span 
+class="small-caps">o</span><span 
+class="small-caps">u</span><span 
+class="small-caps">s</span></span>.   Rosettacode.org.   <a 
+href="http://rosettacode.org" class="url" ><span 
+class="cmtt-10">http://rosettacode.org</span></a>.   Accessed:
+    2014-09-30.
+    </p>
+    <p class="bibitem" ><span class="biblabel">
+ [37]<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span><a 
+ id="XDBLP:journals/cacm/WeimerFGN10"></a><span 
+class="cmcsc-10">W<span 
+class="small-caps">e</span><span 
+class="small-caps">i</span><span 
+class="small-caps">m</span><span 
+class="small-caps">e</span><span 
+class="small-caps">r</span>,  W.,  F<span 
+class="small-caps">o</span><span 
+class="small-caps">r</span><span 
+class="small-caps">r</span><span 
+class="small-caps">e</span><span 
+class="small-caps">s</span><span 
+class="small-caps">t</span>,  S.,  G<span 
+class="small-caps">o</span><span 
+class="small-caps">u</span><span 
+class="small-caps">e</span><span 
+class="small-caps">s</span>,  C.</span><span 
+class="cmcsc-10">&#x00A0;L.,  <span 
+class="small-caps">a</span><span 
+class="small-caps">n</span><span 
+class="small-caps">d</span>  N<span 
+class="small-caps">g</span><span 
+class="small-caps">u</span><span 
+class="small-caps">y</span><span 
+class="small-caps">e</span><span 
+class="small-caps">n</span>,  T.</span>
+    Automatic program repair with evolutionary computation. <span 
+class="cmti-10">Commun. ACM</span>
+    <span 
+class="cmti-10">53</span>, 5 (2010), 109&#8211;116.
+    </p>
+    <p class="bibitem" ><span class="biblabel">
+ [38]<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span><a 
+ id="XDBLP:conf/icse/WeimerNGF09"></a><span 
+class="cmcsc-10">W<span 
+class="small-caps">e</span><span 
+class="small-caps">i</span><span 
+class="small-caps">m</span><span 
+class="small-caps">e</span><span 
+class="small-caps">r</span>,  W.,  N<span 
+class="small-caps">g</span><span 
+class="small-caps">u</span><span 
+class="small-caps">y</span><span 
+class="small-caps">e</span><span 
+class="small-caps">n</span>,  T.,  G<span 
+class="small-caps">o</span><span 
+class="small-caps">u</span><span 
+class="small-caps">e</span><span 
+class="small-caps">s</span>,  C.</span><span 
+class="cmcsc-10">&#x00A0;L.,  <span 
+class="small-caps">a</span><span 
+class="small-caps">n</span><span 
+class="small-caps">d</span>  F<span 
+class="small-caps">o</span><span 
+class="small-caps">r</span><span 
+class="small-caps">r</span><span 
+class="small-caps">e</span><span 
+class="small-caps">s</span><span 
+class="small-caps">t</span>,  S.</span>
+    Automatically finding patches using genetic programming. In <span 
+class="cmti-10">ICSE </span>(2009),
+    IEEE, pp.&#x00A0;364&#8211;374.
+                                                                  
+
+                                                                  
+    </p>
+    <p class="bibitem" ><span class="biblabel">
+ [39]<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span><a 
+ id="Xweimer2009automatically"></a><span 
+class="cmcsc-10">W<span 
+class="small-caps">e</span><span 
+class="small-caps">i</span><span 
+class="small-caps">m</span><span 
+class="small-caps">e</span><span 
+class="small-caps">r</span>,  W.,  N<span 
+class="small-caps">g</span><span 
+class="small-caps">u</span><span 
+class="small-caps">y</span><span 
+class="small-caps">e</span><span 
+class="small-caps">n</span>,  T.,  L<span 
+class="small-caps">e</span></span><span 
+class="cmcsc-10">&#x00A0;G<span 
+class="small-caps">o</span><span 
+class="small-caps">u</span><span 
+class="small-caps">e</span><span 
+class="small-caps">s</span>,  C.,  <span 
+class="small-caps">a</span><span 
+class="small-caps">n</span><span 
+class="small-caps">d</span>  F<span 
+class="small-caps">o</span><span 
+class="small-caps">r</span><span 
+class="small-caps">r</span><span 
+class="small-caps">e</span><span 
+class="small-caps">s</span><span 
+class="small-caps">t</span>,  S.</span>
+    Automatically finding patches using genetic programming. In <span 
+class="cmti-10">Proceedings</span>
+    <span 
+class="cmti-10">of the 31st International Conference on Software Engineering </span>(2009), IEEE
+    Computer Society, pp.&#x00A0;364&#8211;374.
+    </p>
+    <p class="bibitem" ><span class="biblabel">
+ [40]<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span><a 
+ id="Xwheeler2001sloccount"></a><span 
+class="cmcsc-10">W<span 
+class="small-caps">h</span><span 
+class="small-caps">e</span><span 
+class="small-caps">e</span><span 
+class="small-caps">l</span><span 
+class="small-caps">e</span><span 
+class="small-caps">r</span>, D.</span><span 
+class="cmcsc-10">&#x00A0;A. </span>Sloccount, 2001.
+    </p>
+    <p class="bibitem" ><span class="biblabel">
+ [41]<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span><a 
+ id="Xwhite2011evolutionary"></a><span 
+class="cmcsc-10">W<span 
+class="small-caps">h</span><span 
+class="small-caps">i</span><span 
+class="small-caps">t</span><span 
+class="small-caps">e</span>, D., A<span 
+class="small-caps">r</span><span 
+class="small-caps">c</span><span 
+class="small-caps">u</span><span 
+class="small-caps">r</span><span 
+class="small-caps">i</span>, A., <span 
+class="small-caps">a</span><span 
+class="small-caps">n</span><span 
+class="small-caps">d</span> C<span 
+class="small-caps">l</span><span 
+class="small-caps">a</span><span 
+class="small-caps">r</span><span 
+class="small-caps">k</span>, J. </span>Evolutionary improvement
+    of programs. <span 
+class="cmti-10">Evolutionary Computation, IEEE Transactions on</span>, 99 (2011),
+    1&#8211;24.
+    </p>
+    <p class="bibitem" ><span class="biblabel">
+ [42]<span class="bibsp">&#x00A0;&#x00A0;&#x00A0;</span></span><a 
+ id="Xwhite2008searching"></a><span 
+class="cmcsc-10">W<span 
+class="small-caps">h</span><span 
+class="small-caps">i</span><span 
+class="small-caps">t</span><span 
+class="small-caps">e</span>,  D.</span><span 
+class="cmcsc-10">&#x00A0;R.,  C<span 
+class="small-caps">l</span><span 
+class="small-caps">a</span><span 
+class="small-caps">r</span><span 
+class="small-caps">k</span>,  J.,  J<span 
+class="small-caps">a</span><span 
+class="small-caps">c</span><span 
+class="small-caps">o</span><span 
+class="small-caps">b</span>,  J.,  <span 
+class="small-caps">a</span><span 
+class="small-caps">n</span><span 
+class="small-caps">d</span>  P<span 
+class="small-caps">o</span><span 
+class="small-caps">u</span><span 
+class="small-caps">l</span><span 
+class="small-caps">d</span><span 
+class="small-caps">i</span><span 
+class="small-caps">n</span><span 
+class="small-caps">g</span>,  S.</span><span 
+class="cmcsc-10">&#x00A0;M.</span>
+    Searching   for   resource-efficient   programs:   Low-power   pseudorandom
+    number generators. In <span 
+class="cmti-10">Proceedings of the 10th annual conference on Genetic</span>
+    <span 
+class="cmti-10">and evolutionary computation </span>(2008), ACM, pp.&#x00A0;1775&#8211;1782.
+</p>
+    </div>
+<div class="footnotes"><!--l. 43--><p class="noindent" ><span class="footnote-mark"><a 
+href="#fn1x0-bk" id="fn1x0"><sup class="textsuperscript">1</sup></a></span><span 
+class="cmr-8">The name locoGP originated from early experimentation with lines of code and objects but is of</span>
+<span 
+class="cmr-8">little significance in the context of the current locoGP implementation.</span></p>
+<!--l. 43--><p class="noindent" ><span class="footnote-mark"><a 
+href="#fn2x0-bk" id="fn2x0"><sup class="textsuperscript">2</sup></a></span><span 
+class="cmr-8">Source code of locoGP and problem set are available from the first author.</span></p>
+<!--l. 138--><p class="noindent" ><span class="footnote-mark"><a 
+href="#fn3x0-bk" id="fn3x0"><sup class="textsuperscript">3</sup></a></span><span 
+class="cmr-8">Systems specifically for bug-fixing are not included.</span></p>
+<!--l. 223--><p class="noindent" ><span class="footnote-mark"><a 
+href="#fn4x0-bk" id="fn4x0"><sup class="textsuperscript">4</sup></a></span><span 
+class="cmr-8">Source code is available from the authors of bycounter which is a dependency of</span>
+<span 
+class="cmr-8">locoGP.</span></p>
+<!--l. 416--><p class="noindent" ><span class="footnote-mark"><a 
+href="#fn5x0-bk" id="fn5x0"><sup class="textsuperscript">5</sup></a></span><span 
+class="cmr-8">The notion of using locoGP to improve locoGP poses an enticing challenge.</span></p>
+<!--l. 423--><p class="noindent" ><span class="footnote-mark"><a 
+href="#fn6x0-bk" id="fn6x0"><sup class="textsuperscript">6</sup></a></span><span 
+class="cmr-8">locoGP also implements mechanisms for node selection bias within a program as an</span>
+<span 
+class="cmr-8">experimental feature.</span></p>                                                   </div>
+ 
+</body></html> 
+
+                                                                  
+
+
