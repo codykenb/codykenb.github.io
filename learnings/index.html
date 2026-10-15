@@ -3,20 +3,11 @@
 <title>Learnings from harness engineering</title>
 <meta name="description" content="What I learned running AI coding agents unattended on my own codebase for 51 days, and the problems still open.">
 <style>
-:root{color:#1d2833;background:#fbfbfa}
-body{margin:0;font-family:Georgia,'Times New Roman',serif;font-size:18px;line-height:1.6}
-main{max-width:680px;margin:0 auto;padding:32px 16px 48px}
-h1{font-size:1.9em;line-height:1.2;margin:0 0 6px}
-.byline{color:#5f6b76;font-size:.85em;margin:0 0 28px;font-family:system-ui,sans-serif}
-h2{font-size:1.3em;margin:2em 0 .4em;font-family:system-ui,sans-serif}
-h3{font-size:1.05em;margin:1.6em 0 .3em;font-family:system-ui,sans-serif;color:#3a4652}
-p,li{margin:.6em 0}
+body{max-width:40em;margin:0 auto;padding:16px;font-family:verdana,arial,sans-serif;font-size:16px;line-height:1.5;color:#222;background:#fff}
 a{color:#265C83}
-footer{margin-top:40px;font-size:.85em;color:#5f6b76;font-family:system-ui,sans-serif}
-@media (prefers-color-scheme:dark){:root{color:#dde3e8;background:#16191c}.byline,footer{color:#97a3ad}h3{color:#b8c3cc}a{color:#7fb3dc}}
-</style></head><body><main>
+</style></head><body>
 <h1>Learnings from harness engineering</h1>
-<p class="byline">Brendan Cody-Kenny, October 2026</p>
+<p>Brendan Cody-Kenny, October 2026</p>
 <p>I ran AI coding agents unattended on my own codebase, and over 51 days they merged 229 changes. The agents merged most reliably on tasks with a clear written spec and a test a machine could run. About four in ten tasks merged on the first try. Retrying a task without changing its spec rarely helped, and most tasks that merged late did so after I had changed or re-queued them. Which AI model wrote the code mattered less than I expected. I would not leave anything unattended that no test can check. The main open problem is that a run of small changes, each passing the tests, gets stuck at a design that no single small change improves.</p>
 <h2>How it works</h2>
 <p>I keep a list of tasks. Each one is a short written spec plus one command that passes when the task is done. Overnight, and whenever the list has work, an AI agent takes a task and writes code on its own branch. The change then runs through the test suite, first where the agent worked and again on a clean machine, and it merges only if both runs pass. If they fail, the task is retried, and after a couple of failures it is set aside for me. Every attempt goes into an attempt log, a file with one line per attempt saying which task, which model, what happened and how long it took. The harness is everything around the agent, meaning the task list, the test suite, the retries and the log.</p>
@@ -52,5 +43,5 @@ footer{margin-top:40px;font-size:.85em;color:#5f6b76;font-family:system-ui,sans-
 <li>A ratchet for big structural changes, aimed at the local optimum above. A script counts the places still doing something the old way, such as code that opens a data file directly in place of calling one shared function, and CI fails any change that raises that count. Agents can then move the places over one task at a time, and no change can add to the count.</li>
 <li>Recording manual test results next to the automatic ones, so a person's "this is broken" goes into the prompt for the agent's next attempt.</li>
 </ul>
-<footer><a href="../">Brendan Cody-Kenny</a></footer>
-</main></body></html>
+<p><a href="../">Brendan Cody-Kenny</a></p>
+</body></html>
