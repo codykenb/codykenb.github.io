@@ -34,7 +34,7 @@
 <td><a href="https://en.wikipedia.org/wiki/Fitness_function">fitness function</a></td>
 <td><a href="https://en.wikipedia.org/wiki/Mutation_testing">mutation score</a>, <a href="https://en.wikipedia.org/wiki/Code_coverage">coverage</a>, benchmark time, static-analysis score</td>
 <td><a href="https://primeintellect.ai/rl-glossary/verifiable-rewards">reward</a>, score, graded eval; a <a href="https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents">model-based grader or LLM-as-judge</a></td>
-<td>no term</td>
+<td>satisfaction, the share of runs through the scenarios that satisfy the user (<a href="https://factory.strongdm.ai/">StrongDM</a>); shadow score (<a href="https://github.com/DUBSOpenHub/dark-factory">DUBSOpenHub</a>)</td>
 </tr>
 <tr>
 <td><strong>The overall loop</strong></td>
@@ -50,7 +50,7 @@
 <td>the representation (<a href="https://en.wikipedia.org/wiki/Genotype%E2%80%93phenotype_distinction">genotype</a>), <a href="https://en.wikipedia.org/wiki/Abstract_syntax_tree">AST</a>, representation</td>
 <td>the <a href="https://en.wikipedia.org/wiki/Diff">diff</a></td>
 <td><a href="https://arxiv.org/abs/2601.04171">candidate patch</a></td>
-<td>no term</td>
+<td>code treated as "opaque weights", judged only by its behaviour (<a href="https://factory.strongdm.ai/techniques">StrongDM</a>)</td>
 </tr>
 <tr>
 <td><strong>How a new change is made</strong></td>
@@ -66,7 +66,7 @@
 <td><a href="https://en.wikipedia.org/wiki/Memetic_algorithm">memetic algorithms</a>, local search, hybrid metaheuristics</td>
 <td>debugging</td>
 <td>the agent's own edit and test loop</td>
-<td>no term</td>
+<td>what the agent may do inside one step of a fixed workflow (<a href="https://addyosmani.com/blog/software-factories/">Osmani</a>)</td>
 </tr>
 <tr>
 <td><strong>Changes made using what the code is for</strong></td>
@@ -74,7 +74,7 @@
 <td>none</td>
 <td>a developer</td>
 <td>an LLM given the repository's code, tests and docs</td>
-<td>no term</td>
+<td>semport, a port that keeps what the code means (<a href="https://factory.strongdm.ai/techniques">StrongDM</a>)</td>
 </tr>
 <tr>
 <td><strong>One attempt and its log</strong></td>
@@ -82,7 +82,7 @@
 <td>individual, variant (<a href="https://en.wikipedia.org/wiki/Genetic_programming">GP</a>)</td>
 <td>commit, pull request</td>
 <td><a href="https://docs.nvidia.com/nemo/gym/about/concepts/key-terminology/">rollout, trajectory</a></td>
-<td>no term</td>
+<td>proof of work (<a href="https://github.com/openai/symphony">OpenAI Symphony</a>); trajectory (<a href="https://factory.strongdm.ai/">StrongDM</a>)</td>
 </tr>
 <tr>
 <td><strong>Several attempts at one task at the same time</strong></td>
@@ -122,7 +122,7 @@
 <td><a href="https://en.wikipedia.org/wiki/Algorithm_selection">algorithm portfolio</a>, <a href="https://en.wikipedia.org/wiki/Hyper-heuristic">hyper-heuristics</a></td>
 <td>assigning a ticket to the developer best suited to it</td>
 <td>model routing, cascade (a cheap model first, a stronger one on failure)</td>
-<td>no term</td>
+<td>model routing (<a href="https://factory.ai">Factory</a>)</td>
 </tr>
 <tr>
 <td><strong>Trying differently after a failure</strong></td>
@@ -130,7 +130,7 @@
 <td>restart, perturbation, <a href="https://en.wikipedia.org/wiki/Simulated_annealing">simulated annealing</a> (accept a worse candidate for a while)</td>
 <td>rewrite it</td>
 <td>resample; retry with feedback</td>
-<td>no term</td>
+<td>a failing run goes back to the fix (<a href="https://addyosmani.com/blog/software-factories/">Osmani</a>); hardening cycles (<a href="https://github.com/DUBSOpenHub/dark-factory">DUBSOpenHub</a>)</td>
 </tr>
 <tr>
 <td><strong>Changing one thing at a time and keeping it only if the score improves</strong></td>
@@ -154,7 +154,7 @@
 <td><a href="https://en.wikipedia.org/wiki/Overfitting">overfitting</a> to the test suite; plausible patch (<a href="https://en.wikipedia.org/wiki/Automatic_bug_fixing">APR</a>)</td>
 <td><a href="https://en.wikipedia.org/wiki/Teaching_to_the_test">teaching to the test</a></td>
 <td><a href="https://primeintellect.ai/rl-glossary/reward-hacking">reward hacking</a>, <a href="https://en.wikipedia.org/wiki/Reward_hacking">specification gaming</a>, verifier gaming</td>
-<td>no term</td>
+<td>tests that "can be reward hacked" (<a href="https://factory.strongdm.ai/">StrongDM</a>)</td>
 </tr>
 <tr>
 <td><strong>What an attempt starts from</strong></td>
@@ -178,7 +178,7 @@
 <td><a href="https://en.wikipedia.org/wiki/Genetic_improvement">genetic improvement</a></td>
 <td><a href="https://en.wikipedia.org/wiki/Code_refactoring">refactoring</a>, optimisation</td>
 <td><a href="https://en.wikipedia.org/wiki/Automatic_bug_fixing">automated program repair</a>; <a href="https://www.swebench.com/">SWE-bench</a>-style <a href="https://arxiv.org/abs/2310.06770">repair</a></td>
-<td>no term</td>
+<td>brownfield (<a href="https://addyosmani.com/blog/software-factories/">Osmani</a>)</td>
 </tr>
 <tr>
 <td><strong>No test can check it</strong></td>
@@ -205,6 +205,38 @@
 <td>the sandbox the loop runs in, then the review gate</td>
 </tr>
 <tr>
+<td><strong>Fake copies of the external services the code calls</strong></td>
+<td>no match</td>
+<td>no term</td>
+<td><a href="https://en.wikipedia.org/wiki/Test_double">test double</a>, <a href="https://en.wikipedia.org/wiki/Service_virtualization">service virtualisation</a></td>
+<td>no settled term</td>
+<td>Digital Twin Universe (<a href="https://factory.strongdm.ai/techniques/dtu">StrongDM</a>)</td>
+</tr>
+<tr>
+<td><strong>How easy a codebase is for an agent to work in</strong></td>
+<td>no match</td>
+<td>no term</td>
+<td><a href="https://en.wikipedia.org/wiki/Software_testability">testability</a></td>
+<td>harnessability (<a href="https://martinfowler.com/articles/exploring-gen-ai/harness-engineering.html">Böckeler</a>)</td>
+<td>Agent Readiness (<a href="https://factory.ai">Factory</a>)</td>
+</tr>
+<tr>
+<td><strong>Copying a working pattern from another codebase</strong></td>
+<td>no match</td>
+<td>software transplantation</td>
+<td>reference implementation</td>
+<td>no settled term</td>
+<td>gene transfusion (<a href="https://factory.strongdm.ai/techniques/gene-transfusion">StrongDM</a>)</td>
+</tr>
+<tr>
+<td><strong>Tests and code written by different model families</strong></td>
+<td>no match</td>
+<td>no term</td>
+<td>independent <a href="https://en.wikipedia.org/wiki/Software_verification_and_validation">verification and validation</a></td>
+<td>no settled term</td>
+<td>model independence (<a href="https://github.com/DUBSOpenHub/dark-factory">DUBSOpenHub</a>)</td>
+</tr>
+<tr>
 <td><strong>Chance of success within k tries</strong></td>
 <td>equivalent</td>
 <td>success rate over k independent runs</td>
@@ -226,7 +258,7 @@
 <td><a href="https://en.wikipedia.org/wiki/Fitness_landscape">fitness landscape</a> analysis</td>
 <td><a href="https://en.wikipedia.org/wiki/Agile_software_development">retrospectives</a></td>
 <td><a href="https://arxiv.org/abs/2608.01918">Retrospective Harness Optimization</a></td>
-<td>no term</td>
+<td>feedback, a sample of the output fed back into the inputs (<a href="https://factory.strongdm.ai/principles">StrongDM</a>)</td>
 </tr>
 <tr>
 <td><strong>Rerunning a fixed set of tasks to measure the harness or model</strong></td>
@@ -258,7 +290,7 @@
 <td><a href="https://en.wikipedia.org/wiki/Training,_validation,_and_test_data_sets">training and test sets</a></td>
 <td>no term</td>
 <td>train and test split</td>
-<td>no term</td>
+<td>holdout scenarios (<a href="https://factory.strongdm.ai/principles">StrongDM</a>)</td>
 </tr>
 <tr>
 <td><strong>A big change made in small passing steps</strong></td>
@@ -274,7 +306,7 @@
 <td>diversification and intensification in <a href="https://en.wikipedia.org/wiki/Tabu_search">tabu search</a></td>
 <td>expansion and consolidation phases (<a href="http://www.laputan.org/lifecycle/lifecycle.html">Foote and Opdyke</a>; <a href="http://www.laputan.org/mud/">Big Ball of Mud</a>)</td>
 <td>no settled term</td>
-<td>no term</td>
+<td>"garbage collection" agents that run periodically against entropy (OpenAI, via <a href="https://martinfowler.com/articles/exploring-gen-ai/harness-engineering-memo.html">Böckeler</a>); a nightly loop that fixes one anti-pattern per pull request (Horthy, via <a href="https://addyosmani.com/blog/software-factories/">Osmani</a>)</td>
 </tr>
 <tr>
 <td><strong>A count that may only go down</strong></td>
@@ -289,7 +321,7 @@
 <td>equivalent</td>
 <td><a href="https://en.wikipedia.org/wiki/Fitness_function">fitness function</a></td>
 <td><a href="https://thoughtworks.com/radar/techniques/architectural-fitness-function">architectural fitness function</a>, a term borrowed from evolutionary computing</td>
-<td><a href="https://arxiv.org/abs/2607.05391">verifier</a>, rarely applied to structure</td>
+<td><a href="https://arxiv.org/abs/2607.05391">verifier</a>, rarely applied to structure; architecture fitness harness (<a href="https://martinfowler.com/articles/exploring-gen-ai/harness-engineering.html">Böckeler</a>)</td>
 <td>no term</td>
 </tr>
 <tr>
