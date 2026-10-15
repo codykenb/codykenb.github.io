@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SBSE to harness concordance</title>
+<style>body{padding:0 1em;font-family:verdana,sans-serif;line-height:1.5}td{vertical-align:top;border-top:1px solid #ccc}</style>
+</head><body>
+<h1>SBSE to harness concordance</h1>
+<p>Brendan Cody-Kenny, October 2026</p>
+<p>Many ideas in harness engineering already have names in <a href="https://en.wikipedia.org/wiki/Search-based_software_engineering">search-based software engineering</a> (SBSE). Harness engineering is about two years old and its terms are still changing. Each row below gives one idea and its name in SBSE, in software engineering, in harness engineering and in agent factories, with a reference for each term.</p>
+<p>The agent factory column uses the 2026 sense of the term, from <a href="https://addyosmani.com/blog/software-factories/">Addy Osmani</a>. "Software factory" also names <a href="https://books.google.de/books/about/Japan_s_Software_Factories.html?id=KW_mCwAAQBAJ">Cusumano's Japanese factories</a> and <a href="https://en.wikipedia.org/wiki/Software_factory_(Microsoft_.NET)">Greenfield and Short's model-driven factories</a> (2004), and this table covers neither.</p>
+<p>Strength says how closely the SBSE term matches the harness term. Equivalent means both name the same role and the words could be swapped. Analogy means the roles match and the mechanism differs. Weak means the terms do related but different jobs. No match means one field has no counterpart.</p>
+<table>
+<thead>
+<tr>
+<th>Concept</th>
+<th>Strength</th>
+<th>SBSE / GP</th>
+<th>Software engineering</th>
+<th>Harness engineering</th>
+<th>Agent factory</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Pass or fail check on a change</strong></td>
+<td>equivalent</td>
+<td><a href="https://en.wikipedia.org/wiki/Test_oracle">oracle</a></td>
+<td><a href="https://en.wikipedia.org/wiki/Acceptance_testing">acceptance tests</a>, test assertions</td>
+<td><a href="https://arxiv.org/abs/2607.05391">verifier</a>, grader; the <a href="https://primeintellect.ai/rl-glossary/verifiable-rewards">verifiable reward</a> in RLVR</td>
+<td><a href="https://addyosmani.com/blog/software-factories/">review gate</a></td>
+</tr>
+<tr>
+<td><strong>A score for how close a change is</strong></td>
+<td>equivalent</td>
+<td><a href="https://en.wikipedia.org/wiki/Fitness_function">fitness function</a></td>
+<td><a href="https://en.wikipedia.org/wiki/Mutation_testing">mutation score</a>, <a href="https://en.wikipedia.org/wiki/Code_coverage">coverage</a>, benchmark time, static-analysis score</td>
+<td><a href="https://primeintellect.ai/rl-glossary/verifiable-rewards">reward</a>, score</td>
+<td>no term</td>
+</tr>
+<tr>
+<td><strong>The overall loop</strong></td>
+<td>analogy</td>
+<td>the <a href="https://en.wikipedia.org/wiki/Metaheuristic">metaheuristic</a></td>
+<td>no term</td>
+<td>the <a href="https://arxiv.org/abs/2608.01918">harness</a>, the scaffold; owns the loop, context and stop conditions</td>
+<td>the <a href="https://addyosmani.com/blog/software-factories/">loop</a>: gather context, take an action, check the result, go again until some condition is met</td>
+</tr>
+<tr>
+<td><strong>The thing being changed</strong></td>
+<td>analogy</td>
+<td>the representation (<a href="https://en.wikipedia.org/wiki/Genotype%E2%80%93phenotype_distinction">genotype</a>), <a href="https://en.wikipedia.org/wiki/Abstract_syntax_tree">AST</a>, representation</td>
+<td>the <a href="https://en.wikipedia.org/wiki/Diff">diff</a></td>
+<td><a href="https://arxiv.org/abs/2601.04171">candidate patch</a></td>
+<td>no term</td>
+</tr>
+<tr>
+<td><strong>How a new change is made</strong></td>
+<td>weak</td>
+<td><a href="https://en.wikipedia.org/wiki/Mutation_(evolutionary_algorithm)">mutation</a>, <a href="https://en.wikipedia.org/wiki/Crossover_(evolutionary_algorithm)">crossover</a></td>
+<td>hand edit, <a href="https://en.wikipedia.org/wiki/Code_refactoring">refactoring</a></td>
+<td>an LLM (the policy) producing a <a href="https://docs.nvidia.com/nemo/gym/about/concepts/key-terminology/">rollout</a>; one rollout contains many edits and test runs</td>
+<td>the action step of the loop</td>
+</tr>
+<tr>
+<td><strong>Trial and error inside one attempt</strong></td>
+<td>analogy</td>
+<td><a href="https://en.wikipedia.org/wiki/Memetic_algorithm">memetic algorithms</a>, local search, hybrid metaheuristics</td>
+<td>debugging</td>
+<td>the agent's own edit and test loop</td>
+<td>no term</td>
+</tr>
+<tr>
+<td><strong>Changes made using what the code is for</strong></td>
+<td>no match</td>
+<td>none</td>
+<td>a developer</td>
+<td>an LLM given the repository's code, tests and docs</td>
+<td>no term</td>
+</tr>
+<tr>
+<td><strong>One attempt and its log</strong></td>
+<td>weak</td>
+<td>individual, variant (<a href="https://en.wikipedia.org/wiki/Genetic_programming">GP</a>)</td>
+<td>commit, pull request</td>
+<td><a href="https://docs.nvidia.com/nemo/gym/about/concepts/key-terminology/">rollout, trajectory</a></td>
+<td>no term</td>
+</tr>
+<tr>
+<td><strong>Several attempts at one task at the same time</strong></td>
+<td>analogy</td>
+<td><a href="https://en.wikipedia.org/wiki/Evolutionary_algorithm">population</a></td>
+<td>no term</td>
+<td>K independent attempts, <a href="https://arxiv.org/abs/2601.04171">best-of-N</a></td>
+<td>many harnessed loops running at once</td>
+</tr>
+<tr>
+<td><strong>Accepting a change</strong></td>
+<td>analogy</td>
+<td><a href="https://en.wikipedia.org/wiki/Selection_(evolutionary_algorithm)">selection</a>, elitism (always keep the best so far)</td>
+<td><a href="https://en.wikipedia.org/wiki/Code_review">code review</a>, protected main</td>
+<td><a href="https://arxiv.org/abs/2607.05391">verifier-guided selection</a>, rejection sampling</td>
+<td>merged after a review gate</td>
+</tr>
+<tr>
+<td><strong>A failed attempt</strong></td>
+<td>equivalent</td>
+<td>failed evaluation</td>
+<td>failed CI run</td>
+<td>failed <a href="https://docs.nvidia.com/nemo/gym/about/concepts/key-terminology/">rollout</a></td>
+<td>no term</td>
+</tr>
+<tr>
+<td><strong>When to stop</strong></td>
+<td>equivalent</td>
+<td>termination criterion, evaluation budget</td>
+<td><a href="https://en.wikipedia.org/wiki/Timeboxing">timebox</a></td>
+<td>step limit, max turns, budget</td>
+<td>no named stop rule</td>
+</tr>
+<tr>
+<td><strong>Picking which model to use</strong></td>
+<td>analogy</td>
+<td><a href="https://en.wikipedia.org/wiki/Algorithm_selection">algorithm portfolio</a>, <a href="https://en.wikipedia.org/wiki/Hyper-heuristic">hyper-heuristics</a></td>
+<td>no term</td>
+<td>model routing, cascade (a cheap model first, a stronger one on failure)</td>
+<td>no term</td>
+</tr>
+<tr>
+<td><strong>Trying differently after a failure</strong></td>
+<td>analogy</td>
+<td>restart, perturbation, <a href="https://en.wikipedia.org/wiki/Simulated_annealing">simulated annealing</a> (accept a worse candidate for a while)</td>
+<td>rewrite it</td>
+<td>resample; retry with feedback</td>
+<td>no term</td>
+</tr>
+<tr>
+<td><strong>Stuck where no small change helps</strong></td>
+<td>no match</td>
+<td><a href="https://en.wikipedia.org/wiki/Local_optimum">local optimum</a>, <a href="https://en.wikipedia.org/wiki/Premature_convergence">premature convergence</a></td>
+<td>no settled term</td>
+<td>no settled term</td>
+<td>no term</td>
+</tr>
+<tr>
+<td><strong>Passing the check while still wrong</strong></td>
+<td>equivalent</td>
+<td><a href="https://en.wikipedia.org/wiki/Overfitting">overfitting</a> to the test suite; plausible patch (<a href="https://en.wikipedia.org/wiki/Automatic_bug_fixing">APR</a>)</td>
+<td><a href="https://en.wikipedia.org/wiki/Teaching_to_the_test">teaching to the test</a></td>
+<td><a href="https://primeintellect.ai/rl-glossary/reward-hacking">reward hacking</a>, <a href="https://en.wikipedia.org/wiki/Reward_hacking">specification gaming</a>, verifier gaming</td>
+<td>no term</td>
+</tr>
+<tr>
+<td><strong>What an attempt starts from</strong></td>
+<td>analogy</td>
+<td>seeding (start from known programs)</td>
+<td><a href="https://en.wikipedia.org/wiki/Boilerplate_code">boilerplate</a></td>
+<td>initial repository state, system prompt, context</td>
+<td>a queue of work</td>
+</tr>
+<tr>
+<td><strong>The task description</strong></td>
+<td>analogy</td>
+<td>specification; examples (<a href="https://en.wikipedia.org/wiki/Programming_by_example">PBE</a>)</td>
+<td><a href="https://en.wikipedia.org/wiki/Software_requirements_specification">requirements</a>, <a href="https://en.wikipedia.org/wiki/Acceptance_testing">acceptance criteria</a></td>
+<td>task spec, instruction</td>
+<td>a queue item</td>
+</tr>
+<tr>
+<td><strong>Improving an existing program</strong></td>
+<td>analogy</td>
+<td><a href="https://en.wikipedia.org/wiki/Genetic_improvement">genetic improvement</a></td>
+<td><a href="https://en.wikipedia.org/wiki/Code_refactoring">refactoring</a>, optimisation</td>
+<td><a href="https://en.wikipedia.org/wiki/Automatic_bug_fixing">automated program repair</a>; <a href="https://www.swebench.com/">SWE-bench</a>-style <a href="https://arxiv.org/abs/2310.06770">repair</a></td>
+<td>no term</td>
+</tr>
+<tr>
+<td><strong>No test can check it</strong></td>
+<td>equivalent</td>
+<td>the <a href="https://en.wikipedia.org/wiki/Test_oracle">oracle problem</a></td>
+<td>"you have to look at it"</td>
+<td>unverifiable or hard-to-verify domains</td>
+<td><a href="https://addyosmani.com/blog/software-factories/">light factory</a>, where people check what the loop cannot</td>
+</tr>
+<tr>
+<td><strong>One task</strong></td>
+<td>equivalent</td>
+<td>problem instance</td>
+<td><a href="https://en.wikipedia.org/wiki/Issue_tracking_system">ticket</a></td>
+<td><a href="https://docs.nvidia.com/nemo/gym/about/concepts/key-terminology/">task, environment instance</a></td>
+<td>a queue item: an issue (<a href="https://github.com/openai/symphony">OpenAI Symphony</a>), a scenario (<a href="https://factory.strongdm.ai/">StrongDM</a>)</td>
+</tr>
+<tr>
+<td><strong>Where changes are tested</strong></td>
+<td>equivalent</td>
+<td>evaluation environment</td>
+<td><a href="https://en.wikipedia.org/wiki/Deployment_environment">dev box</a></td>
+<td><a href="https://en.wikipedia.org/wiki/Sandbox_(computer_security)">sandbox</a>, environment</td>
+<td>the sandbox the loop runs in, then the review gate</td>
+</tr>
+<tr>
+<td><strong>Chance of success within k tries</strong></td>
+<td>equivalent</td>
+<td>success rate over k independent runs</td>
+<td>no term</td>
+<td><a href="https://arxiv.org/abs/2601.04171">pass@k, BEST@K</a></td>
+<td>no term</td>
+</tr>
+<tr>
+<td><strong>Cost of testing a change</strong></td>
+<td>equivalent</td>
+<td>evaluation cost</td>
+<td><a href="https://en.wikipedia.org/wiki/Continuous_integration">CI minutes</a></td>
+<td>rollout cost</td>
+<td>verification cost</td>
+</tr>
+<tr>
+<td><strong>Using past runs to improve the setup</strong></td>
+<td>weak</td>
+<td><a href="https://en.wikipedia.org/wiki/Fitness_landscape">fitness landscape</a> analysis</td>
+<td><a href="https://en.wikipedia.org/wiki/Agile_software_development">retrospectives</a></td>
+<td><a href="https://arxiv.org/abs/2608.01918">Retrospective Harness Optimization</a></td>
+<td>no term</td>
+</tr>
+<tr>
+<td><strong>A big change made in small passing steps</strong></td>
+<td>weak</td>
+<td>no settled term; <a href="https://en.wikipedia.org/wiki/Genetic_improvement">genetic improvement</a> edits are small and the program keeps passing its tests between them</td>
+<td><a href="https://www.martinfowler.com/bliki/ParallelChange.html">parallel change</a> (expand, migrate, contract), <a href="https://martinfowler.com/bliki/StranglerFigApplication.html">strangler fig</a>, <a href="https://scrapbox.io/kawasima/Long-term_Refactoring">long-term refactoring</a></td>
+<td><a href="https://addyosmani.com/blog/long-running-agents/">long-running agent</a> work with a progress file and incremental commits; <a href="https://arxiv.org/abs/2608.23564">long-horizon whole-repository migration</a></td>
+<td>no term</td>
+</tr>
+<tr>
+<td><strong>Grow, then clean up</strong></td>
+<td>analogy</td>
+<td>diversification and intensification in <a href="https://en.wikipedia.org/wiki/Tabu_search">tabu search</a></td>
+<td>expansion and consolidation phases (<a href="http://www.laputan.org/lifecycle/lifecycle.html">Foote and Opdyke</a>; <a href="http://www.laputan.org/mud/">Big Ball of Mud</a>)</td>
+<td>no settled term</td>
+<td>no term</td>
+</tr>
+<tr>
+<td><strong>A count that may only go down</strong></td>
+<td>analogy</td>
+<td>elitism, and never accepting a worse result</td>
+<td><a href="https://seanfitz.substack.com/p/ratchets">ratchet</a>, as in Notion's <a href="https://www.notion.com/blog/how-we-evolved-our-code-notions-ratcheting-system-using-custom-eslint-rules">eslint ratcheting system</a></td>
+<td>no settled term</td>
+<td>no term</td>
+</tr>
+<tr>
+<td><strong>A test for architecture rules</strong></td>
+<td>equivalent</td>
+<td><a href="https://en.wikipedia.org/wiki/Fitness_function">fitness function</a></td>
+<td><a href="https://thoughtworks.com/radar/techniques/architectural-fitness-function">architectural fitness function</a>, a term borrowed from evolutionary computing</td>
+<td><a href="https://arxiv.org/abs/2607.05391">verifier</a>, rarely applied to structure</td>
+<td>no term</td>
+</tr>
+<tr>
+<td><strong>Many agents running at once</strong></td>
+<td>analogy</td>
+<td>island model (separate populations that swap candidates), parallel evolutionary algorithms</td>
+<td><a href="https://en.wikipedia.org/wiki/Continuous_integration">continuous integration</a> pipeline</td>
+<td>orchestrator, as in <a href="https://github.com/openai/symphony">OpenAI Symphony</a></td>
+<td>the <a href="https://addyosmani.com/blog/software-factories/">factory</a>: many loops taking work from one queue, with every change passing a review gate</td>
+</tr>
+<tr>
+<td><strong>Where people review</strong></td>
+<td>analogy</td>
+<td><a href="https://en.wikipedia.org/wiki/Interactive_evolutionary_computation">interactive evolutionary computation</a></td>
+<td><a href="https://en.wikipedia.org/wiki/Code_review">code review</a></td>
+<td><a href="https://en.wikipedia.org/wiki/Human-in-the-loop">human in the loop</a></td>
+<td><a href="https://addyosmani.com/blog/software-factories/">light factory</a> (humans in the loop) and dark factory (nobody looks at the code); <a href="https://www.danshapiro.com/blog/2026/01/the-five-levels-from-spicy-autocomplete-to-the-software-factory/">Shapiro's scale</a> ends at the dark factory</td>
+</tr>
+<tr>
+<td><strong>How much to leave unchecked</strong></td>
+<td>weak</td>
+<td>no settled term</td>
+<td>no settled term</td>
+<td>no settled term</td>
+<td><a href="https://addyosmani.com/blog/software-factories/">back pressure</a>: a loop gets only as much autonomy as can be checked cheaply and reliably</td>
+</tr>
+<tr>
+<td><strong>Code nobody understands</strong></td>
+<td>analogy</td>
+<td>no term</td>
+<td><a href="https://en.wikipedia.org/wiki/Technical_debt">technical debt</a></td>
+<td>no settled term</td>
+<td><a href="https://addyosmani.com/blog/software-factories/">comprehension debt</a></td>
+</tr>
+<tr>
+<td><strong>Tests the agent cannot see</strong></td>
+<td>equivalent</td>
+<td>held-out test set, as in <a href="https://en.wikipedia.org/wiki/Training,_validation,_and_test_data_sets">training, validation and test sets</a></td>
+<td>independent <a href="https://en.wikipedia.org/wiki/Acceptance_testing">acceptance testing</a></td>
+<td>held-out eval</td>
+<td>"the writer never grades the work" (<a href="https://github.com/addyosmani/factory">addyosmani/factory</a>); sealed tests the builder never sees (<a href="https://github.com/DUBSOpenHub/dark-factory">DUBSOpenHub/dark-factory</a>); scenarios held out like a model-training holdout set (<a href="https://factory.strongdm.ai/">StrongDM</a>)</td>
+</tr>
+</tbody>
+</table>
+<h2>Two loops and an evaluator</h2>
+<p>A harness has two nested loops and an evaluator. The outer loop chooses a task, a model and a budget, and then retries, merges or sets the task aside. The inner loop is the agent inspecting, editing and testing. The test suite checks each candidate and returns the result. The inner loop is already a search, so the outer loop picks between searches. The closest SBSE work for the outer loop is <a href="https://en.wikipedia.org/wiki/Algorithm_selection">algorithm selection</a> and <a href="https://en.wikipedia.org/wiki/Hyper-heuristic">hyper-heuristics</a>.</p>
+<h2>Cost</h2>
+<p>Genetic programming uses a cheap random mutation and runs thousands of evaluations. An agent writes a patch from the repository's code and tests, at far higher cost per candidate, and a harness can afford a handful of evaluations per task. With so few evaluations, the result depends on the agent and the tests.</p>
+<h2>Links</h2>
+<p>Links were checked on 2026-10-15. The harness and agent factory terms are recent, so date them wherever you reuse them.</p>
+<p><a href="../">Brendan Cody-Kenny</a></p>
+</body></html>
