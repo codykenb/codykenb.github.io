@@ -38,6 +38,9 @@
 <li>When is a larger architectural jump worth the extra risk and validation cost?</li>
 <li>Which classic SBSE techniques transfer to stochastic, language-driven agents, and which do not?</li>
 </ul>
+<h2>Contemporary example: Anthropic's eval hillclimber</h2>
+<p>Anthropic's <a href="https://claude.dev/blog/automating-eval-design-and-hillclimbing/">Automating eval design and hillclimbing with Claude</a> describes iteratively improving prompts, skills, tool descriptions and harness code against evaluations. See also the <a href="https://github.com/anthropics/skills/blob/main/skills/claude-api/shared/evals/eval-hillclimb.md">eval-hillclimb implementation notes</a>.</p>
+<p>This is a concrete example of the SBSE connection: candidate generation, evaluation, selection and repeated local improvement. Held-out evaluations help check generalisation, but they do not by themselves solve architectural quality or the problem of reaching improvements that require temporarily worse intermediate states. It would be worth comparing its search operators and stopping rules with established SBSE approaches.</p>
 <h2>Starting points for a literature review</h2>
 <p>These are starting points, <strong>not</strong> claims that each technique has been validated for LLM coding agents.</p>
 <ul>
