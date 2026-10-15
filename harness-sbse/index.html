@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Harness engineering: lessons from SBSE</title>
+<meta name="description" content="Lessons from search-based software engineering for coding-agent harnesses: local optima, fitness, diversity, generalisation, and open questions.">
+<style>body{max-width:48em;margin:auto;padding:0 1em;font-family:verdana,sans-serif;line-height:1.5}table{border-collapse:collapse;display:block;overflow-x:auto;font-size:.9em}td{vertical-align:top;border-top:1px solid #ccc;padding:.5em}h1,h2{line-height:1.25}</style></head><body>
+<h1>Harness engineering: lessons from search-based software engineering</h1>
+<p><em>Working notes — 15 October 2026</em></p>
+<p>Coding-agent harnesses often implement a search loop: propose a change, evaluate it with tests or other feedback, retain or reject it, and try again. That is recognisably related to <strong>search-based software engineering (SBSE)</strong>. Not every agent workflow is an explicit optimiser, and the analogy does not imply that the problems are solved.</p>
+<p>These notes separate established search ideas, practical hypotheses for coding agents, and questions that still need evidence.</p>
+<h2>The useful translation</h2>
+<table><tbody>
+<tr><td>Observed harness problem</td><td>SBSE lens</td><td>Intervention worth testing</td><td>What remains uncertain</td></tr>
+<tr><td>Repeated small patches without structural progress</td><td>Local optima; neighbourhood design</td><td>Detect stagnation; restart or perturb; change edit granularity</td><td>Which stagnation signals predict genuine architectural blockage?</td></tr>
+<tr><td>All tests pass but the code gets harder to change</td><td>Fitness specification; multi-objective search</td><td>Track change cost and structural indicators alongside correctness</td><td>Which proxies predict future maintenance cost rather than just rewarding neat-looking code?</td></tr>
+<tr><td>Multiple agents reach similar solutions</td><td>Premature convergence; diversity</td><td>Compare structurally distinct plans, not just independently sampled responses</td><td>How should architectural diversity be measured?</td></tr>
+<tr><td>Success on known tests but failure on new requirements</td><td>Overfitting; generalisation</td><td>Hidden tests, mutation testing, holdout tasks, follow-on change tasks</td><td>What evaluation predicts performance on future work?</td></tr>
+<tr><td>A needed refactor cannot be made in one passing step</td><td>Representation and search operators</td><td>Allow isolated branches with temporarily failing intermediate states, then validate the final state</td><td>How should the harness budget and safely manage these excursions?</td></tr>
+<tr><td>Tests and model calls dominate runtime</td><td>Expensive fitness evaluation</td><td>Cheap checks first; selective full-suite runs; budget-aware search</td><td>When does screening discard the best candidates?</td></tr>
+</tbody></table>
+<h2>One observation from my own harness</h2>
+<p>My harness makes small changes and merges them only when every test passes. It works well for incremental work, but when a feature needs a structural change, the agent can spend a long time patching around the existing architecture.</p>
+<p>My current intervention is to stop, make or request a larger structural change, tolerate the temporary breakage in an isolated working branch, then restart the harness to repair failures with small passing tasks. Rewriting a repeatedly failing task also works better than simply retrying it.</p>
+<p>This resembles <strong>perturbation followed by local search</strong>. It is an observation, not yet a controlled result.</p>
+<h2>Five experiments</h2>
+<ol>
+<li><strong>Stagnation:</strong> Run comparable tasks with repeated retries versus restart, changed instructions, and larger perturbations. Measure success, time, tokens, and edit size.</li>
+<li><strong>Architecture:</strong> Give each approach a sequence of follow-on feature requests. Measure total time and regressions, not only the first task's completion.</li>
+<li><strong>Temporary breakage:</strong> Compare always-green incremental edits with an isolated branch that permits failing intermediate states but requires a green final merge.</li>
+<li><strong>Diversity:</strong> Compare several independent agents with agents explicitly required to propose different structural approaches. Inspect actual solution diversity and outcomes.</li>
+<li><strong>Generalisation:</strong> Evaluate on unseen tests and later maintenance tasks; check whether scores on visible tests predict either.</li>
+</ol>
+<p>Control for model, budget, repository, task difficulty and evaluation harness. Report negative results. Avoid treating a proxy metric as the objective itself.</p>
+<h2>Open questions</h2>
+<ul>
+<li>What is a useful, hard-to-game measure of architectural quality or future cost of change?</li>
+<li>Can we detect a local optimum before wasting a large number of iterations?</li>
+<li>What search representation allows coherent cross-file, cross-component refactors?</li>
+<li>When is a larger architectural jump worth the extra risk and validation cost?</li>
+<li>Which classic SBSE techniques transfer to stochastic, language-driven agents, and which do not?</li>
+</ul>
+<h2>Starting points for a literature review</h2>
+<p>These are starting points, <strong>not</strong> claims that each technique has been validated for LLM coding agents.</p>
+<ul>
+<li>Harman and Jones, <em>Search-Based Software Engineering</em> (2001), foundational framing.</li>
+<li>McMinn, <em>Search-Based Software Test Data Generation: A Survey</em> (2004), fitness and test generation.</li>
+<li>Deb et al., <em>A Fast and Elitist Multiobjective Genetic Algorithm: NSGA-II</em> (2002), multi-objective optimisation.</li>
+<li>Fraser and Arcuri, <em>EvoSuite: Automatic Test Suite Generation for Object-Oriented Software</em> (2011), automated test generation.</li>
+</ul>
+<p>Related Substrate notes: <a href="https://sub.xiliary.com/p/brendancodykenny/posts/71/i-made-a-harness-engineering-glossary-with-cross-field-names">Harness engineering glossary</a> and <a href="https://sub.xiliary.com/p/brendancodykenny/posts/70/learnings-from-harness-engineering">Learnings from harness engineering</a>.</p>
+<p>The point is not to rename harness engineering as SBSE. It is to find out which decades-old lessons save us from repeating the same mistakes.</p>
+<p><a href="../">Brendan Cody-Kenny</a></p></body></html>
