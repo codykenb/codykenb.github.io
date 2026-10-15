@@ -33,7 +33,7 @@
 <td>equivalent</td>
 <td><a href="https://en.wikipedia.org/wiki/Fitness_function">fitness function</a></td>
 <td><a href="https://en.wikipedia.org/wiki/Mutation_testing">mutation score</a>, <a href="https://en.wikipedia.org/wiki/Code_coverage">coverage</a>, benchmark time, static-analysis score</td>
-<td><a href="https://primeintellect.ai/rl-glossary/verifiable-rewards">reward</a>, score, graded eval</td>
+<td><a href="https://primeintellect.ai/rl-glossary/verifiable-rewards">reward</a>, score, graded eval; a <a href="https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents">model-based grader or LLM-as-judge</a></td>
 <td>no term</td>
 </tr>
 <tr>
@@ -133,6 +133,14 @@
 <td>no term</td>
 </tr>
 <tr>
+<td><strong>Changing one thing at a time and keeping it only if the score improves</strong></td>
+<td>equivalent</td>
+<td><a href="https://en.wikipedia.org/wiki/Hill_climbing">hill climbing</a>, local search</td>
+<td>no term</td>
+<td>hillclimbing a prompt, skill or model setting against an eval</td>
+<td>no term</td>
+</tr>
+<tr>
 <td><strong>Stuck where no small change helps</strong></td>
 <td>no match</td>
 <td><a href="https://en.wikipedia.org/wiki/Local_optimum">local optimum</a>, <a href="https://en.wikipedia.org/wiki/Premature_convergence">premature convergence</a></td>
@@ -201,7 +209,7 @@
 <td>equivalent</td>
 <td>success rate over k independent runs</td>
 <td>no term</td>
-<td><a href="https://arxiv.org/abs/2601.04171">pass@k, BEST@K</a></td>
+<td><a href="https://arxiv.org/abs/2601.04171">pass@k, BEST@K</a>; <a href="https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents">pass^k</a>, the chance that all k tries succeed</td>
 <td>no term</td>
 </tr>
 <tr>
@@ -226,6 +234,30 @@
 <td>benchmark suite of test problems</td>
 <td><a href="https://en.wikipedia.org/wiki/Benchmark_(computing)">benchmark</a></td>
 <td>eval suite, as in <a href="https://www.swebench.com/">SWE-bench</a></td>
+<td>no term</td>
+</tr>
+<tr>
+<td><strong>Evals of new abilities versus evals that guard old ones</strong></td>
+<td>analogy</td>
+<td>no term</td>
+<td>new tests versus the <a href="https://en.wikipedia.org/wiki/Regression_testing">regression suite</a></td>
+<td><a href="https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents">capability evals and regression evals</a></td>
+<td>no term</td>
+</tr>
+<tr>
+<td><strong>An eval too easy to show a difference</strong></td>
+<td>no match</td>
+<td>no term</td>
+<td>no term</td>
+<td><a href="https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents">eval saturation</a></td>
+<td>no term</td>
+</tr>
+<tr>
+<td><strong>Splitting eval cases into ones you tune on and ones you check on</strong></td>
+<td>equivalent</td>
+<td><a href="https://en.wikipedia.org/wiki/Training,_validation,_and_test_data_sets">training and test sets</a></td>
+<td>no term</td>
+<td>train and test split</td>
 <td>no term</td>
 </tr>
 <tr>
