@@ -335,7 +335,7 @@
 </tbody>
 </table>
 <h2>Two loops and an evaluator</h2>
-<p>A harness has two nested loops and an evaluator. The outer loop chooses a task, a model and a budget, and then retries, merges or sets the task aside. The inner loop is the agent inspecting, editing and testing. The test suite checks each candidate and returns the result. The inner loop is already a search, so the outer loop picks between searches. The closest SBSE work for the outer loop is <a href="https://en.wikipedia.org/wiki/Algorithm_selection">algorithm selection</a> and <a href="https://en.wikipedia.org/wiki/Hyper-heuristic">hyper-heuristics</a>.</p>
+<p>A harness has two nested loops and an evaluator. The outer loop chooses a task, a model and a budget, and then retries, merges or sets the task aside. The inner loop is the agent inspecting, editing and testing. The test suite checks each candidate and returns the result. In a Scrum team, people run the outer loop by hand, choosing the next ticket, assigning it and deciding whether it is done. A harness automates that part of the development process. The inner loop is already a search, so the outer loop picks between searches. The closest SBSE work for the outer loop is <a href="https://en.wikipedia.org/wiki/Algorithm_selection">algorithm selection</a> and <a href="https://en.wikipedia.org/wiki/Hyper-heuristic">hyper-heuristics</a>.</p>
 <h2>Cost</h2>
 <p>Genetic programming uses a cheap random mutation and runs thousands of evaluations. An agent writes a patch from the repository's code and tests, at far higher cost per candidate, and a harness can afford a handful of evaluations per task. With so few evaluations, the result depends on the agent and the tests.</p>
 <h2>Links</h2>
