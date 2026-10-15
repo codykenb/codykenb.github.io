@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Learnings from harness engineering</title>
+<meta name="description" content="What I learned running AI coding agents unattended on my own codebase for 51 days, and the problems still open.">
+<style>
+:root{color:#1d2833;background:#fbfbfa}
+body{margin:0;font-family:Georgia,'Times New Roman',serif;font-size:18px;line-height:1.6}
+main{max-width:680px;margin:0 auto;padding:32px 16px 48px}
+h1{font-size:1.9em;line-height:1.2;margin:0 0 6px}
+.byline{color:#5f6b76;font-size:.85em;margin:0 0 28px;font-family:system-ui,sans-serif}
+h2{font-size:1.3em;margin:2em 0 .4em;font-family:system-ui,sans-serif}
+h3{font-size:1.05em;margin:1.6em 0 .3em;font-family:system-ui,sans-serif;color:#3a4652}
+p,li{margin:.6em 0}
+a{color:#265C83}
+footer{margin-top:40px;font-size:.85em;color:#5f6b76;font-family:system-ui,sans-serif}
+@media (prefers-color-scheme:dark){:root{color:#dde3e8;background:#16191c}.byline,footer{color:#97a3ad}h3{color:#b8c3cc}a{color:#7fb3dc}}
+</style></head><body><main>
+<h1>Learnings from harness engineering</h1>
+<p class="byline">Brendan Cody-Kenny, October 2026</p>
+<p>I ran AI coding agents unattended on my own codebase, and over 51 days they merged 229 changes. The agents merged most reliably on tasks with a clear written spec and a test a machine could run. About four in ten tasks merged on the first try. Retrying a task without changing its spec rarely helped, and most tasks that merged late did so after I had changed or re-queued them. Which AI model wrote the code mattered less than I expected. I would not leave anything unattended that no test can check. The main open problem is that a run of small changes, each passing the tests, gets stuck at a design that no single small change improves.</p>
+<h2>How it works</h2>
+<p>I keep a list of tasks. Each one is a short written spec plus one command that passes when the task is done. Overnight, and whenever the list has work, an AI agent takes a task and writes code on its own branch. The change then runs through the test suite, first where the agent worked and again on a clean machine, and it merges only if both runs pass. If they fail, the task is retried, and after a couple of failures it is set aside for me. Every attempt goes into an attempt log, a file with one line per attempt saying which task, which model, what happened and how long it took. The harness is everything around the agent, meaning the task list, the test suite, the retries and the log.</p>
+<h2>What I learned</h2>
+<h3>The tests are the merge gate</h3>
+<p><strong>1. The agent is only as good as the test suite.</strong> Ten changes the agent marked as done failed on a clean machine, because it had skipped the unit tests it was told to run. Across the whole log, that clean rerun caught 18 of 247 changes that the first run had passed.</p>
+<p><strong>2. An agent given its test in the prompt can pass it without fixing the problem.</strong> Mine were given theirs. Some other systems write the tests before the agent starts and store them where it cannot open them, and that is my next experiment.</p>
+<h3>Choose tasks a test can check, and rewrite the ones that fail</h3>
+<p><strong>3. Only give it work a test can check.</strong> I kept anything visual for myself from the start.</p>
+<p><strong>4. Rewrite a failing task instead of retrying it.</strong> Retries of an unchanged task merged about one time in five, against four in ten for first tries. Most late successes came after I had changed or re-queued the task.</p>
+<h3>The harness costs time, and its failures look like task failures</h3>
+<p><strong>5. When the harness breaks, it looks as if the task failed, or worse, succeeded.</strong> A provider outage made sixteen tasks fail in 34 minutes. A merge script once dropped the real change and recorded success. A stuck lock stopped everything for 34 hours.</p>
+<p><strong>6. Small tasks are not cheap.</strong> Every task runs the full test suite twice, and a typical successful attempt took about 23 minutes.</p>
+<p><strong>7. Per-task tests do not measure the design.</strong> Each change passes the tests it touches, so a change that makes the structure worse passes too. Big structural changes still needed me, working outside the task list.</p>
+<p><strong>8. Nobody looks at what merges unless something notifies them.</strong> For a month, 36 set-aside tasks went unreviewed because nothing notified me. A summary now goes out after each run.</p>
+<h3>Log every attempt and check every number</h3>
+<p><strong>9. Log every attempt.</strong> One line per attempt answered "has it run, and when?" in seconds, where it had taken an hour, and every number here comes from that log.</p>
+<p><strong>10. Check numbers with a script.</strong> Three confident claims in my own notes turned out wrong when a script checked them, including the total hours.</p>
+<p><strong>11. Comparing AI models fairly needs random assignment.</strong> Which model got which task depended on the time of day, so the log cannot show which model is best. The log does show that two of the five were worse than the other three.</p>
+<h2>Open problems</h2>
+<p>I want as much of my development as possible to go through the harness unattended. Each problem below limits how much can.</p>
+<p><strong>Getting stuck in a local optimum.</strong> Each task is one small change, and it merges only if every test passes. A better design that needs several changes in a row, some of which break things along the way, cannot be reached one passing change at a time. The agents patch around the old structure, and the codebase stays at the best design that small passing changes can reach. Lesson 7 is one result of this. I end up pausing the harness and asking for large structural changes that I expect will break a lot of things, and then I run the harness to clean up.</p>
+<p><strong>Writing tasks takes my time.</strong> Most tasks that failed and later merged did so after I rewrote them. A failed attempt shows where the spec was ambiguous, where the test checked the wrong thing, or where the task was too big. I find that out only after an attempt has failed, and the rewrite is by hand. Nothing checks a spec for ambiguity before the first attempt.</p>
+<p><strong>The same logic gets reimplemented and scattered.</strong> An agent will write its own version of something the codebase already has, such as a second function that opens the same data file, in place of using the shared one. The tests pass either way. Over many changes one job ends up done in several places, each slightly different, and a later fix that misses one of them leaves the bug in place.</p>
+<p><strong>Pass or fail is the only signal.</strong> An attempt that got most of the way scores the same as one that did nothing. The next attempt gets the failure output and no measure of how close the last one came.</p>
+<p><strong>One candidate per attempt.</strong> Each attempt produces one change, which merges or fails. Some systems generate several changes for the same task and keep the best, which costs several times as much per task. I have not tried it.</p>
+<p><strong>The attempt log is not fed back.</strong> I analyse the log by hand. No part of the harness uses it to change the prompts, the task list or the harness itself.</p>
+<p><strong>Understanding falls behind.</strong> The agents merged 229 changes I did not write, and I have no measure of how much of that code I understand.</p>
+<h2>What I am trying next</h2>
+<ul>
+<li>Hidden tests that the agent cannot open or change.</li>
+<li>Handing tasks to models at random, so comparisons between them are fair.</li>
+<li>A ratchet for big structural changes, aimed at the local optimum above. A script counts the places still doing something the old way, such as code that opens a data file directly in place of calling one shared function, and CI fails any change that raises that count. Agents can then move the places over one task at a time, and no change can add to the count.</li>
+<li>Recording manual test results next to the automatic ones, so a person's "this is broken" goes into the prompt for the agent's next attempt.</li>
+</ul>
+<footer><a href="../">Brendan Cody-Kenny</a></footer>
+</main></body></html>
